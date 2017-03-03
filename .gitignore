@@ -1,0 +1,27 @@
+#javascript
+node_modules
+build
+
+.idea
+.DS_Store
+*.log
+coverage
+
+#Flask
+*.pyc
+*.pyo
+env
+env*
+buil
+*.egg
+*.egg-info
+_mailinglist
+.tox
+.cache/
+.idea/
+
+#Coverage Reports
+htmlcov
+.coverage
+.coverage.*
+*,cover
