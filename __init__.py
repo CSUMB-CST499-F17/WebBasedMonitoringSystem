@@ -1,1 +1,1 @@
-#Any initialization code for packeges, if any.
+#Any initialization code for packages, if any.
