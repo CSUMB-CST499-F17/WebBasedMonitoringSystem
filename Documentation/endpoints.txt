@@ -1,0 +1,50 @@
+#Endpoints
+
+lib/cylc/https/suite_info_server.py
+https://localhost:port_number/info/ping_suite
+https://localhost:port_number/info/get_cylc_version
+https://localhost:port_number/info/get_suite_info
+https://localhost:port_number/info/get_first_parent_ancestors
+https://localhost:port_number/info/get_all_families
+
+lib/cylc/https/suite_log_server.py
+https://localhost:port_number/log/get_err_content #Needs Parameters: max_lines, prev_size
+
+lib/cylc/https/suite_state_server.py
+https://localhost:port_number/state/get_state_summary
+https://localhost:port_number/state/get_state_summary_update_time //Currently not working
+
+lib/cylc/https/suite_command_server.py
+https://localhost:port_number/command/kill_active_tasks
+https://localhost:port_number/command/set_stops_after_points #Needs Parameters: point_string
+https://localhost:port_number/command/set_stop_after_clock_time #Need Parameters: datetime
+https://localhost:port_number/command/set_stop_after_task #Needs Parameters: task_id
+https://localhost:port_number/command/release_suite
+https://localhost:port_number/command/release_task #Needs Parameters: items:list, 
+https://localhost:port_number/command/remove_cylce
+https://localhost:port_number/command/remove_tasks #Needs Parameters: items:list,
+https://localhost:port_number/command/hold_after_point_string #Needs Parameters: point:string, 
+https://localhost:port_number/command/hold_desk #Needs Parameters: items:list, 
+https://localhost:port_number/command/set_runahead //Currently not working
+https://localhost:port_number/command/set_verbosity #Needs Parameters: level
+https://localhost:port_number/command/reset_task_states #Needs Parameters: state, items:list,
+https://localhost:port_number/command/trigger_task #Needs Parameters: items:list,
+https://localhost:port_number/command/dry_run_tasks
+https://localhost:port_number/command/nudge #Needs SHUTDOWN PRIVELAGE
+https://localhost:port_number/command/insert_tasks #Needs Parameters: items:list, stop_point, no_check
+https://localhost:port_number/command/reload_suite
+https://localhost:port_number/command/pull_tasks #Needs Parameters: items:list, SHUTDOWN PRIVELAGE
+https://localhost:port_number/command/kill_tasks #Needs Parameters: items:list,
+
+lib/cylc/https/suite_broadcast_server.py
+https://localhost:port_number/
+
+lib/cylc/https/suite_exttrigger_server.py
+https://localhost:port_number/
+
+lib/cylc/https/suite_message_server.py
+https://localhost:port_number/
+
+lib/cylc/https/suite_identify_server.py
+https://localhost:port_number/command/kill_active_tasks
+
