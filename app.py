@@ -19,11 +19,6 @@ def values():
         host_name = request.form['hostName']
         port_number = request.form['portNumber'] 
 
-        #Authentication
-        headers={
-        'username':'anon',
-        'password':'the quick brown fox'
-        }
         
         #TODO: Link is hard typed for now.
         link = "https://" + host_name + ":" + str(port_number) + '/id/identify'
