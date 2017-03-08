@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Cylc Workflow Index Page
+	</title>
+	<script src="https://code.jquery.com/jquery-2.2.3.js" 
+                integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="   
+                crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <div>
+        
+        <!-- Getting the form data and sending it to Flask -->
+        <form action="/data" autocomplete="on" method="POST">
+            <input id="hostName" type="text" name="hostName" />
+            <input id="portNumber" type="text" name="portNumber"/>
+            <input type="submit" name="index" value="Send">
+        </form>
+    </div>
+
+    <ul>
+    {% for data in data %}
+        <li> {{data }} </li>
+    {% endfor %}
+    </ul>
+
+</body>
+</html>
