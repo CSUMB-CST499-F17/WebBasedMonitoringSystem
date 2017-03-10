@@ -21,8 +21,15 @@ setInterval(function(){ socket.emit('data',{'hostName':hostName,'portNumber':por
           
  }, 3000);
 }
+buffer="";
 socket.on('summary_info',function(data){
-console.log(data);
+for(var i=0;i<data.length;i++)
+{
+console.log(data[i]);
+
+buffer+=" <li>"+data[i]+"</li>";
+}
+$('ul').html(buffer);
 });
     </script>
 </head>
@@ -38,9 +45,6 @@ console.log(data);
     </div>
 
     <ul>
-    {% for data in data %}
-        <li> {{data }} </li>
-    {% endfor %}
     </ul>
 
 </body>
