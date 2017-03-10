@@ -10,13 +10,14 @@
 <script>
 var socket = io('http://127.0.0.1:5000');
   socket.on('connect', function(){});
+  socket.on('disconnect');
 var hostName="";
 var portNumber="";
 function getData()
 {
 hostName=$('#hostName').val();
 portNumber=$('#portNumber').val();
-setInterval(function(){ socket.emit('data',{'hostName':hostName,'portNumber':portNumber})
+setInterval(function(){ socket.emit('data',{'hostName':hostName,'portNumber':portNumber});
           
  }, 3000);
 }
