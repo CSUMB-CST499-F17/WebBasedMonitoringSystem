@@ -1,36 +1,42 @@
-from flask import Flask
-from flask import request
-from flask import jsonify, render_template
-import requests
+# app.py
+import os, flask, flask_socketio,requests
+from flask_socketio import emit,send
 import json
 from requests.auth import HTTPDigestAuth
-app = Flask(__name__)
+app = flask.Flask(__name__)
 
-@app.route("/")
-def index():
-    return render_template("index.html")
 
-@app.route("/data", methods=['POST'])
-def values():
 
-    if request.method == 'POST':
-        
-        #Get the values from html template.
-        host_name = request.form['hostName']
-        port_number = request.form['portNumber'] 
+socketio = flask_socketio.SocketIO(app)
 
-        
-        #TODO: Link is hard typed for now.
-        link = "https://" + host_name + ":" + str(port_number) + '/id/identify'
 
-        #Verify not necessary: TODO: Verify = FALSE should not skip authentication.
-        r=requests.get(link,auth=HTTPDigestAuth('anon','the quick brown fox'), verify=False)
-        data = r.json()
-        print data
 
-        #Send data to template.
-        return render_template("index.html", data=data)
-        
-if __name__ == "__main__":
-    app.debug = True
-    app.run()
+@app.route('/')
+def hello():
+ return flask.render_template('index.html')
+
+@socketio.on('connect')
+def on_connect():
+  stuff=10
+ #print "%s USER CONNECTED " %  flask.request.sid
+@socketio.on('data')
+def message(message):
+ print message
+ print message["hostName"]
+ link = "http://"+ str( message["hostName"]) + ":" + str(message["portNumber"]) + '/state/get_state_summary'
+ #Verify not necessary: TODO: Verify = FALSE should not skip authentication.
+ r=requests.get(link,auth=HTTPDigestAuth('anon','the quick brown fox'))
+ data = r.json()
+ emit ('summary_info',data)
+  
+@socketio.on('disconnect')
+def on_disconnect():
+ print "USER DISCONNECTED"
+ 
+    
+if __name__ == '__main__':# __name__!
+
+ socketio.run(
+ app,
+ debug=True
+ )

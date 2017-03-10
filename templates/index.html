@@ -5,25 +5,46 @@
 		Cylc Workflow Index Page
 	</title>
 	<script src="https://code.jquery.com/jquery-2.2.3.js" 
-                integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="   
-                crossorigin="anonymous">
+      integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="                crossorigin="anonymous">
+</script> <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+<script>
+var socket = io('http://127.0.0.1:5000');
+  socket.on('connect', function(){});
+  socket.on('disconnect');
+var hostName="";
+var portNumber="";
+function getData()
+{
+hostName=$('#hostName').val();
+portNumber=$('#portNumber').val();
+setInterval(function(){ socket.emit('data',{'hostName':hostName,'portNumber':portNumber});
+          
+ }, 3000);
+}
+buffer="";
+socket.on('summary_info',function(data){
+for(var i=0;i<data.length;i++)
+{
+console.log(data[i]);
+
+buffer+=" <li>"+data[i]+"</li>";
+}
+$('ul').html(buffer);
+});
     </script>
 </head>
 <body>
     <div>
         
         <!-- Getting the form data and sending it to Flask -->
-        <form action="/data" autocomplete="on" method="POST">
+        <form>
             <input id="hostName" type="text" name="hostName" />
             <input id="portNumber" type="text" name="portNumber"/>
-            <input type="submit" name="index" value="Send">
+            <input type="button" name="index" value="Send" onClick="getData()">
         </form>
     </div>
 
     <ul>
-    {% for data in data %}
-        <li> {{data }} </li>
-    {% endfor %}
     </ul>
 
 </body>
