@@ -11,6 +11,7 @@
       integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="
 	  crossorigin="anonymous">
 	</script> 
+	<script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
 	<script type="text/javascript" 
 			src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js">
 	</script>
@@ -41,6 +42,7 @@
 
 		last_updated="";
 		socket.on('summary_info',function(data){
+            console.log(data);
 			/*for(var i=0;i<data.length;i++){
 				
 				console.log(data[i].last_updated);
@@ -68,8 +70,8 @@
 				succeeded = "0";
 			}
 			running = data[0]['state totals'].running;
-			if(runahead == null | runahead == undefined){
-				succeeded = "0";
+			if(running == null | running == undefined){
+				running = "0";
 			}
 
 			//Set element to the data from the JSON.
@@ -94,6 +96,53 @@
 			document.getElementById("updated").style.visibility = "visible";
 
 			//$('ul').html(buffer);
+            var th_elements = d3.select("body").select("table").select("tr")
+                .selectAll("th");
+            for(var element in th_elements[0]) {
+                switch(th_elements[0][element].textContent.trim()) {
+                    case 'runahead': th_elements[0][element].style.backgroundColor = "#0000FF";
+                        th_elements[0][element].style.color = "#D3D3D3"
+                        break;
+                    case 'waiting': th_elements[0][element].style.backgroundColor = "#000000";
+                        th_elements[0][element].style.color = "#00BFFF";
+                        break;
+                    case 'held': th_elements[0][element].style.backgroundColor = "#FFD700";
+                        th_elements[0][element].style.color = "#808080"
+                        break;
+                    case 'queued': th_elements[0][element].style.backgroundColor = "#0000FF";
+                        th_elements[0][element].style.color = "#FFFFFF"
+                        break;
+                    case 'ready': th_elements[0][element].style.backgroundColor = "#000000";
+                        th_elements[0][element].style.color = "#00FF00";
+                        break;
+                    case 'expired': th_elements[0][element].style.backgroundColor = "#000000";
+                        th_elements[0][element].style.color = "#D3D3D3";
+                        break;
+                    case 'submitted': th_elements[0][element].style.backgroundColor = "#000000";
+                        th_elements[0][element].style.color = "#F0E68C";
+                        break;
+                    case 'submit-failed': th_elements[0][element].style.backgroundColor = "#000000";
+                        th_elements[0][element].style.color = "#0000FF";
+                        break;
+                    case 'submit-retrying': th_elements[0][element].style.backgroundColor = "#000000";
+                        th_elements[0][element].style.color = "#FF0000";
+                        break;
+                    case 'running': th_elements[0][element].style.backgroundColor = "#008000";
+                        th_elements[0][element].style.color = "#D3D3D3"
+                        break;
+                    case 'succeeded': th_elements[0][element].style.backgroundColor = "#000000";
+                        th_elements[0][element].style.color = "#FFFFFF"
+                        break;
+                    case 'failed': th_elements[0][element].style.backgroundColor = "#FF0000";
+                        th_elements[0][element].style.color = "#D3D3D3"
+                        break;
+                    case 'retrying': th_elements[0][element].style.backgroundColor = "#000000";
+                        th_elements[0][element].style.color = "#FF1493"
+                        break;
+                    default:
+                        break;
+                }
+            }
 		});
     </script>
 </head>
