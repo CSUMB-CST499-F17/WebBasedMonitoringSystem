@@ -1,36 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style>
+		table, th, td{border: 1px solid black;
+	</style>
 	<title>
 		Cylc Workflow Index Page
 	</title>
 	<script src="https://code.jquery.com/jquery-2.2.3.js" 
-      integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="                crossorigin="anonymous">
-</script> <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
-<script>
-var socket = io('http://127.0.0.1:5000');
-  socket.on('connect', function(){});
-  socket.on('disconnect');
-var hostName="";
-var portNumber="";
-function getData()
-{
-hostName=$('#hostName').val();
-portNumber=$('#portNumber').val();
-setInterval(function(){ socket.emit('data',{'hostName':hostName,'portNumber':portNumber});
-          
- }, 3000);
-}
-buffer="";
-socket.on('summary_info',function(data){
-for(var i=0;i<data.length;i++)
-{
-console.log(data[i]);
+      integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="
+	  crossorigin="anonymous">
+	</script> 
+	<script type="text/javascript" 
+			src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js">
+	</script>
+	
+	<script>
+		
+		//Sets the table visibility to false until the data has been emitted.
+		window.onload = function(){
+			document.getElementById("information").style.visibility = "hidden";
+			document.getElementById("table").style.visibility = "hidden";
+			document.getElementById("updated").style.visibility = "hidden";
+		}	
+		
+		var socket = io('http://127.0.0.1:5000'); 
+		var hostName="";
+		var portNumber="";
 
-buffer+=" <li>"+data[i]+"</li>";
-}
-$('ul').html(buffer);
-});
+		socket.on('connect', function(){});
+		socket.on('disconnect');
+
+		function getData(){
+			hostName=$('#hostName').val();
+			portNumber=$('#portNumber').val();
+			setInterval(function(){ socket.emit('data',
+									{'hostName':hostName,'portNumber':portNumber});	  
+			 }, 3000);
+		}
+
+		last_updated="";
+		socket.on('summary_info',function(data){
+			/*for(var i=0;i<data.length;i++){
+				
+				console.log(data[i].last_updated);
+				//console.log(data[i].states);
+				//console.log(data[i]);
+				//console.log("STATUS: ", data.status_string);
+
+				
+				//buffer+=" <li>"+data[i].last_updated + "</li>";
+				
+			}*/
+			
+			//Get information from suite every interval.
+			last_updated = data[0].last_updated;
+			runahead = data[0]['state totals'].runahead;
+			if(runahead == null | runahead == undefined){
+				runahead = "0";
+			}
+			waiting = data[0]['state totals'].waiting;
+			if(waiting == null | waiting == undefined){
+				waiting = "0";
+			}
+			succeeded = data[0]['state totals'].succeeded;
+			if(succeeded == null | succeeded == undefined){
+				succeeded = "0";
+			}
+			running = data[0]['state totals'].running;
+			if(runahead == null | runahead == undefined){
+				succeeded = "0";
+			}
+
+			//Set element to the data from the JSON.
+			document.getElementById("information").innerHTML = last_updated;
+			document.getElementById("runahead").innerHTML = runahead;
+			document.getElementById("waiting").innerHTML = waiting;
+			document.getElementById("succeeded").innerHTML = succeeded;
+			document.getElementById("running").innerHTML = running;
+
+
+			//Output to the console. Error fixing.
+			console.log("State totals", data[0]['state totals']);
+			console.log("RUNAHEAD", data[0]["state totals"].runahead);
+			console.log("SUCCEEDED", data[0]["state totals"].succeeded);
+			console.log("OB2", data[1]['state']);
+			console.log("OBJ3 ", data[2]);
+
+			//Make all Elements Visible.
+			document.getElementById("information").style.visibility = "visible";
+			document.getElementById("table").style.visibility = "visible";
+			document.getElementById("runahead").style.visibility = "visible";
+			document.getElementById("updated").style.visibility = "visible";
+
+			//$('ul').html(buffer);
+		});
     </script>
 </head>
 <body>
@@ -43,6 +107,45 @@ $('ul').html(buffer);
             <input type="button" name="index" value="Send" onClick="getData()">
         </form>
     </div>
+	
+	<!-- Table for the different possible status 
+		 CSS styling needed to color code.
+	 -->
+	<table id="table">
+		<tr>
+			<th> runahead</th>
+			<th> waiting</th>
+			<th> held</th>
+			<th> queued</th>
+			<th> ready</th>
+			<th> expired</th>
+			<th> submitted</th>
+			<th> submit-failed</th>
+			<th> submit-retrying</th>
+			<th> running</th>
+			<th> succeeded</th>
+			<th> failed</th>
+			<th> retrying</th>
+		</tr>
+		<tr>
+			<td id="runahead"> </td>
+			<td id="waiting"> </td>
+			<td id="held"> </td>
+			<td id="queued"></td>
+			<td id="ready"></td>
+			<td id="expired"></td>
+			<td id="submitted"></td>
+			<td id="submit-failed"></td>
+			<td id="submit-retrying"></td>
+			<td id="running"></td>
+			<td id="succeeded"></td>
+			<td id="failed"></td>
+			<td id="retrying"></td>
+		</tr>
+	</table>
+	<!-- Last Time Updated -->
+	<p id="updated"> Last Updated: </p>
+	<p id="information"> </p>
 
     <ul>
     </ul>
