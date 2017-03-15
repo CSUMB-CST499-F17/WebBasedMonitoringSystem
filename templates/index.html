@@ -7,25 +7,25 @@
 	<title>
 		Cylc Workflow Index Page
 	</title>
-	<script src="https://code.jquery.com/jquery-2.2.3.js" 
+	<script src="https://code.jquery.com/jquery-2.2.3.js"
       integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="
 	  crossorigin="anonymous">
-	</script> 
+	</script>
 	<script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
-	<script type="text/javascript" 
+	<script type="text/javascript"
 			src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js">
 	</script>
-	
+
 	<script>
-		
+
 		//Sets the table visibility to false until the data has been emitted.
 		window.onload = function(){
 			document.getElementById("information").style.visibility = "hidden";
 			document.getElementById("table").style.visibility = "hidden";
 			document.getElementById("updated").style.visibility = "hidden";
-		}	
-		
-		var socket = io('http://127.0.0.1:5000'); 
+		}
+
+		var socket = io('http://127.0.0.1:5000');
 		var hostName="";
 		var portNumber="";
 
@@ -36,25 +36,29 @@
 			hostName=$('#hostName').val();
 			portNumber=$('#portNumber').val();
 			setInterval(function(){ socket.emit('data',
-									{'hostName':hostName,'portNumber':portNumber});	  
+									{'hostName':hostName,'portNumber':portNumber});
 			 }, 3000);
 		}
 
 		last_updated="";
 		socket.on('summary_info',function(data){
-            console.log(data);
-			/*for(var i=0;i<data.length;i++){
-				
-				console.log(data[i].last_updated);
-				//console.log(data[i].states);
-				//console.log(data[i]);
-				//console.log("STATUS: ", data.status_string);
+			var nodes=data[1];
+			var getAllKeys = Object.keys(nodes);
+			var getSingleKey= Object.keys(nodes)[0];
+			//console.log(data[getAllKeys[5]]);
+		var stateTotals=data[0]["state totals"];
 
-				
-				//buffer+=" <li>"+data[i].last_updated + "</li>";
-				
-			}*/
-			
+		//guaranteed by our suite
+		//TODO:just create these d3 objs dynamically
+			d3.select("body").select("#nodeOne").text(nodes[getAllKeys[0]]["name"] +" "+nodes[getAllKeys[0]]["state"]+ " "+nodes[getAllKeys[0]]["label"]);
+		  d3.select("body").select("#nodeTwo").text(nodes[getAllKeys[1]]["name"]+" "+nodes[getAllKeys[1]]["state"]+ " "+nodes[getAllKeys[1]]["label"]);
+			d3.select("body").select("#nodeThree").text(nodes[getAllKeys[2]]["name"]+" "+nodes[getAllKeys[2]]["state"]+ " "+nodes[getAllKeys[2]]["label"]);
+			d3.select("body").select("#nodeFour").text(nodes[getAllKeys[3]]["name"] +" "+nodes[getAllKeys[3]]["state"]+ " "+nodes[getAllKeys[3]]["lable"]);
+			d3.select("body").select("#nodeFive").text("state totals:" +stateTotals);
+		   d3.select("body").select("#nodeSix").text(getAllKeys);
+            console.log(data);
+
+
 			//Get information from suite every interval.
 			last_updated = data[0].last_updated;
 			runahead = data[0]['state totals'].runahead;
@@ -144,11 +148,17 @@
                 }
             }
 		});
+
+
+
     </script>
-</head>
+		</head>
 <body>
+	<svg width="50" height="50">
+ <circle cx="25" cy="25" r="25" fill="purple" />
+</svg>
     <div>
-        
+
         <!-- Getting the form data and sending it to Flask -->
         <form>
             <input id="hostName" type="text" name="hostName" />
@@ -156,8 +166,8 @@
             <input type="button" name="index" value="Send" onClick="getData()">
         </form>
     </div>
-	
-	<!-- Table for the different possible status 
+
+	<!-- Table for the different possible status
 		 CSS styling needed to color code.
 	 -->
 	<table id="table">
@@ -196,6 +206,13 @@
 	<p id="updated"> Last Updated: </p>
 	<p id="information"> </p>
 
+  <ul>
+		<p id="nodeOne"></p>
+    <p id ="nodeTwo"></p>
+		<p id ="nodeThree"></p>
+		<p id="nodeFour"></p>
+    <p id ="nodeFive"></p>
+		<p id ="nodeSix"></p>
     <ul>
     </ul>
 

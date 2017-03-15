@@ -2,6 +2,7 @@
 import os, flask, flask_socketio,requests
 from flask_socketio import emit,send
 import json
+from flask import jsonify
 from requests.auth import HTTPDigestAuth
 app = flask.Flask(__name__)
 
@@ -17,12 +18,14 @@ def hello():
 
 @socketio.on('connect')
 def on_connect():
-  stuff=10
- #print "%s USER CONNECTED " %  flask.request.sid
+ print "%s USER CONNECTED " %  flask.request.sid
 @socketio.on('data')
 def message(message):
- print message
- print message["hostName"]
+ app.logger.warning('A warning occurred (%d apples)', 42)
+ app.logger.error('An error occurred')
+ app.logger.info('Info')
+# print message
+# print message["hostName"]
  link = "http://"+ str( message["hostName"]) + ":" + str(message["portNumber"]) + '/state/get_state_summary'
  #Verify not necessary: TODO: Verify = FALSE should not skip authentication.
  r=requests.get(link,auth=HTTPDigestAuth('anon','the quick brown fox'))
