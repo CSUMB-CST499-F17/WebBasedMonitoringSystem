@@ -16,218 +16,75 @@
 	<script type="text/javascript"
 			src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js">
 	</script>
-
-	<script>
-
-		//Sets the table visibility to false until the data has been emitted.
-		window.onload = function(){
-			document.getElementById("information").style.visibility = "hidden";
-			document.getElementById("table").style.visibility = "hidden";
-			document.getElementById("updated").style.visibility = "hidden";
-			document.getElementById("stopSuiteButton").style.visibility = "hidden";
-
-		}
-
-		var socket = io('http://127.0.0.1:5000');
-		var hostName="";
-		var portNumber="";
-
-		socket.on('connect', function(){});
-		socket.on('disconnect');
-
-		function getData(){
-			hostName=$('#hostName').val();
-			portNumber=$('#portNumber').val();
-			setInterval(function(){ socket.emit('data',
-									{'hostName':hostName,'portNumber':portNumber});
-			 }, 3000);
-		}
-
-		//Set textbox visibility out.
-
-		last_updated="";
-		socket.on('summary_info',function(data){
-			var nodes=data[1];
-			var getAllKeys = Object.keys(nodes);
-			var getSingleKey= Object.keys(nodes)[0];
-			//console.log(data[getAllKeys[5]]);
-		var stateTotals=data[0]["state totals"];
-
-		//guaranteed by our suite
-		//TODO:just create these d3 objs dynamically
-			d3.select("body").select("#nodeOne").text(nodes[getAllKeys[0]]["name"] +" "+nodes[getAllKeys[0]]["state"]+ " "+nodes[getAllKeys[0]]["label"]);
-		  d3.select("body").select("#nodeTwo").text(nodes[getAllKeys[1]]["name"]+" "+nodes[getAllKeys[1]]["state"]+ " "+nodes[getAllKeys[1]]["label"]);
-			d3.select("body").select("#nodeThree").text(nodes[getAllKeys[2]]["name"]+" "+nodes[getAllKeys[2]]["state"]+ " "+nodes[getAllKeys[2]]["label"]);
-			d3.select("body").select("#nodeFour").text(nodes[getAllKeys[3]]["name"] +" "+nodes[getAllKeys[3]]["state"]+ " "+nodes[getAllKeys[3]]["lable"]);
-			d3.select("body").select("#nodeFive").text("state totals:" + stateTotals);
-		   d3.select("body").select("#nodeSix").text(getAllKeys);
-            console.log(data);
-
-
-			//Get information from suite every interval.
-			last_updated = new Date(data[0].last_updated*1000);
-			console.log("LAST_UPDATED", data[0].last_updated);
-			runahead = data[0]['state totals'].runahead;
-			if(runahead == null | runahead == undefined){
-				runahead = "0";
-			}
-			waiting = data[0]['state totals'].waiting;
-			if(waiting == null | waiting == undefined){
-				waiting = "0";
-			}
-			succeeded = data[0]['state totals'].succeeded;
-			if(succeeded == null | succeeded == undefined){
-				succeeded = "0";
-			}
-			running = data[0]['state totals'].running;
-			if(running == null | running == undefined){
-				running = "0";
-			}
-
-			//Set element to the data from the JSON.
-			document.getElementById("information").innerHTML = last_updated;
-			document.getElementById("runahead").innerHTML = runahead;
-			document.getElementById("waiting").innerHTML = waiting;
-			document.getElementById("succeeded").innerHTML = succeeded;
-			document.getElementById("running").innerHTML = running;
-
-
-			//Output to the console. Error fixing.
-			console.log("State totals", data[0]['state totals']);
-			console.log("RUNAHEAD", data[0]["state totals"].runahead);
-			console.log("SUCCEEDED", data[0]["state totals"].succeeded);
-			console.log("OB2", data[1]['state']);
-			console.log("OBJ3 ", data[2]);
-
-			//Make all Elements Visible.
-			document.getElementById("information").style.visibility = "visible";
-			document.getElementById("table").style.visibility = "visible";
-			document.getElementById("runahead").style.visibility = "visible";
-			document.getElementById("updated").style.visibility = "visible";
-			document.getElementById("stopSuiteButton").style.visibility = "visible";
-
-			//$('ul').html(buffer);
-            var th_elements = d3.select("body").select("table").select("tr")
-                .selectAll("th");
-            for(var element in th_elements[0]) {
-                switch(th_elements[0][element].textContent.trim()) {
-                    case 'runahead': th_elements[0][element].style.backgroundColor = "#0000FF";
-                        th_elements[0][element].style.color = "#D3D3D3"
-                        break;
-                    case 'waiting': th_elements[0][element].style.backgroundColor = "#000000";
-                        th_elements[0][element].style.color = "#00BFFF";
-                        break;
-                    case 'held': th_elements[0][element].style.backgroundColor = "#FFD700";
-                        th_elements[0][element].style.color = "#808080"
-                        break;
-                    case 'queued': th_elements[0][element].style.backgroundColor = "#0000FF";
-                        th_elements[0][element].style.color = "#FFFFFF"
-                        break;
-                    case 'ready': th_elements[0][element].style.backgroundColor = "#000000";
-                        th_elements[0][element].style.color = "#00FF00";
-                        break;
-                    case 'expired': th_elements[0][element].style.backgroundColor = "#000000";
-                        th_elements[0][element].style.color = "#D3D3D3";
-                        break;
-                    case 'submitted': th_elements[0][element].style.backgroundColor = "#000000";
-                        th_elements[0][element].style.color = "#F0E68C";
-                        break;
-                    case 'submit-failed': th_elements[0][element].style.backgroundColor = "#000000";
-                        th_elements[0][element].style.color = "#0000FF";
-                        break;
-                    case 'submit-retrying': th_elements[0][element].style.backgroundColor = "#000000";
-                        th_elements[0][element].style.color = "#FF0000";
-                        break;
-                    case 'running': th_elements[0][element].style.backgroundColor = "#008000";
-                        th_elements[0][element].style.color = "#D3D3D3"
-                        break;
-                    case 'succeeded': th_elements[0][element].style.backgroundColor = "#000000";
-                        th_elements[0][element].style.color = "#FFFFFF"
-                        break;
-                    case 'failed': th_elements[0][element].style.backgroundColor = "#FF0000";
-                        th_elements[0][element].style.color = "#D3D3D3"
-                        break;
-                    case 'retrying': th_elements[0][element].style.backgroundColor = "#000000";
-                        th_elements[0][element].style.color = "#FF1493"
-                        break;
-                    default:
-                        break;
-                }
-            }
-		});
-
-
-
-    </script>
-		</head>
-<body>
-	<svg width="50" height="50">
- <circle cx="25" cy="25" r="25" fill="purple" />
-</svg>
-    <div>
-
+	<script type="text/javascript" src="../static/script.js"></script>
+</head>
+    <body>
+	    <svg width="50" height="50">
+             <circle cx="25" cy="25" r="25" fill="purple" />
+        </svg>
+        <div>
         <!-- Form Data, recevieing suite information from flask. -->
-        <form>
-            HOSTNAME: <input id="hostName" type="text" name="hostName"/>  
-            PORT-NUMBER: <input id="portNumber" type="text" name="portNumber"/> 
-            <input id="sendButton" type="button" name="index" value="Send" onClick="getData()">
-        </form>
-    </div>
+            <form>
+                HOSTNAME: <input id="hostName" type="text" name="hostName"/>  
+                PORT-NUMBER: <input id="portNumber" type="text" name="portNumber"/> 
+                <input id="sendButton" type="button" name="index" value="Send" onClick="getData()">
+            </form>
+        </div>
 
-	<!-- Table for the different possible status
-		 CSS styling needed to color code.
-	 -->
-	<table id="table">
-		<tr>
-			<th> runahead</th>
-			<th> waiting</th>
-			<th> held</th>
-			<th> queued</th>
-			<th> ready</th>
-			<th> expired</th>
-			<th> submitted</th>
-			<th> submit-failed</th>
-			<th> submit-retrying</th>
-			<th> running</th>
-			<th> succeeded</th>
-			<th> failed</th>
-			<th> retrying</th>
-		</tr>
-		<tr>
-			<td id="runahead"> </td>
-			<td id="waiting"> </td>
-			<td id="held"> </td>
-			<td id="queued"></td>
-			<td id="ready"></td>
-			<td id="expired"></td>
-			<td id="submitted"></td>
-			<td id="submit-failed"></td>
-			<td id="submit-retrying"></td>
-			<td id="running"></td>
-			<td id="succeeded"></td>
-			<td id="failed"></td>
-			<td id="retrying"></td>
-		</tr>
-	</table>
+	    <!-- Table for the different possible status
+		     CSS styling needed to color code.
+	     -->
+	    <table id="table">
+		    <tr>
+			    <th> runahead</th>
+			    <th> waiting</th>
+			    <th> held</th>
+			    <th> queued</th>
+			    <th> ready</th>
+			    <th> expired</th>
+			    <th> submitted</th>
+			    <th> submit-failed</th>
+			    <th> submit-retrying</th>
+			    <th> running</th>
+			    <th> succeeded</th>
+			    <th> failed</th>
+			    <th> retrying</th>
+		    </tr>
+		    <tr>
+			    <td id="runahead"> </td>
+			    <td id="waiting"> </td>
+			    <td id="held"> </td>
+			    <td id="queued"></td>
+			    <td id="ready"></td>
+			    <td id="expired"></td>
+			    <td id="submitted"></td>
+			    <td id="submit-failed"></td>
+			    <td id="submit-retrying"></td>
+			    <td id="running"></td>
+			    <td id="succeeded"></td>
+			    <td id="failed"></td>
+			    <td id="retrying"></td>
+		    </tr>
+	    </table>
 
-	<!-- Last Time Updated -->
-	<p id="updated" style="display: inline"> Last Updated: 
-		
-		<div id ="information" style="display: inline"></div>
-	</p>
-	
+	    <!-- Last Time Updated -->
+	    <p id="updated" style="display: inline"> Last Updated: 
+		    <div id ="information" style="display: inline"></div>
+	    </p>
+	    
+	    <ul>
+		    <p id="nodeOne"></p>
+            <p id ="nodeTwo"></p>
+		    <p id ="nodeThree"></p>
+		    <p id="nodeFour"></p>
+            <p id ="nodeFive"></p>
+		    <p id ="nodeSix"></p>
+        </ul>
 
-  <ul>
-		<p id="nodeOne"></p>
-    <p id ="nodeTwo"></p>
-		<p id ="nodeThree"></p>
-		<p id="nodeFour"></p>
-    <p id ="nodeFive"></p>
-		<p id ="nodeSix"></p>
-    <ul>
-    </ul>
-
-	 <input id="stopSuiteButton" type="button" name="index" value="STOP" onClick="stopSuite()">
-
-</body>
+	     <input id="stopSuiteButton" type="button" name="index" value="STOP" onClick="stopSuite()">
+	 
+	     <svg id="nodes" width="500" height="500">
+            <!--<circle cx="25" cy="25" r="25" fill="purple" />-->
+        </svg>
+    </body> 
 </html>
