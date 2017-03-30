@@ -19,13 +19,13 @@ def hello():
 @socketio.on('connect')
 def on_connect():
  print "%s USER CONNECTED " %  flask.request.sid
+
 @socketio.on('data')
 def message(message):
  app.logger.warning('A warning occurred (%d apples)', 42)
  app.logger.error('An error occurred')
  app.logger.info('Info')
-# print message
-# print message["hostName"]
+
  link = "http://"+ str( message["hostName"]) + ":" + str(message["portNumber"]) + '/state/get_state_summary'
  #Verify not necessary: TODO: Verify = FALSE should not skip authentication.
  r=requests.get(link,auth=HTTPDigestAuth('anon','the quick brown fox'))
@@ -35,7 +35,12 @@ def message(message):
 @socketio.on('disconnect')
 def on_disconnect():
  print "USER DISCONNECTED"
- 
+
+@socketio.on('stop_suite')
+def stop_suite(message):
+    stop_link = "https://"+ str( message["hostName"]) + ":" + str(message["portNumber"]) + '/state/get_state_summary'
+    stopped_task=requests.get(link,auth=HTTPDigestAuth('anon','the quick brown fox'), verify=False)
+
     
 if __name__ == '__main__':# __name__!
 

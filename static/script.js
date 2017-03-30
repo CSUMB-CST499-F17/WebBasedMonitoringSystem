@@ -9,6 +9,7 @@ window.onload = function(){
 var socket = io('http://127.0.0.1:5000');
 var hostName="";
 var portNumber="";
+var suite_information;
 
 socket.on('connect', function(){});
 socket.on('disconnect');
@@ -16,15 +17,25 @@ socket.on('disconnect');
 function getData(){
     hostName=$('#hostName').val();
     portNumber=$('#portNumber').val();
-    setInterval(function() { 
-        socket.emit('data', {
-            'hostName':hostName,
-            'portNumber':portNumber
+    suite_information = setInterval(function() { socket.emit('data', {
+        'hostName':hostName,
+        'portNumber':portNumber
         });
     }, 3000);
 }
 
-last_updated="";
+function stopSuite(){
+    //Clear Interval should be another function called in order to pause it.
+    clearInterval(suite_information);
+    //Calls the endpoint to stop the suite that is currently running.
+    hostName=$('#hostName').val();
+    portNumber=$('#portNumber').val();
+        socket.emit('stop_suite', {
+            'hostName':hostName,
+            'portNumber':portNumber
+        });
+}
+
 socket.on('summary_info',function(data){
     var nodes=data[1];
     var getAllKeys = Object.keys(nodes);
@@ -133,7 +144,7 @@ socket.on('summary_info',function(data){
 
 
     //Get information from suite every interval.
-    last_updated = data[0].last_updated;
+    last_updated = new Date(data[0].last_updated*1000);
     runahead = data[0]['state totals'].runahead;
     if(runahead == null | runahead == undefined){
 			runahead = "0";
