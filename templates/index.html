@@ -22,8 +22,8 @@
 	<script type="text/javascript" src="../static/script.js"></script>
 </head>
     <body>
-        <div id="formData">
         <!-- Form Data, recevieing suite information from flask. -->
+        <div id="formData">
             <form>
                 HOSTNAME: <input id="hostName" type="text" name="hostName"/>  
                 PORT-NUMBER: <input id="portNumber" type="text" name="portNumber"/> 
@@ -80,11 +80,11 @@
             <p id ="nodeFive"></p>
 		    <p id ="nodeSix"></p>
         </ul>
-
-	     <input id="stopSuiteButton" type="image" src="../static/stop.jpg" name="index" value="STOP" onClick="stopSuite()"/>
 	 
-	     <svg id="nodes" width="500" height="500">
+	     <svg id="nodes" width="550" height="500">
             <!--<circle cx="25" cy="25" r="25" fill="purple" />-->
         </svg>
+        
+        <input id="stopSuiteButton" type="image" src="../static/stop.jpg" name="index" value="STOP" onClick="stopSuite()"/>
     </body> 
 </html>

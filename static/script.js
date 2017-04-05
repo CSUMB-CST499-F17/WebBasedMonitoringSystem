@@ -10,6 +10,7 @@ var socket = io('http://127.0.0.1:5000');
 var hostName="";
 var portNumber="";
 var suite_information;
+var nodePosition;
 
 socket.on('connect', function(){});
 socket.on('disconnect');
@@ -36,32 +37,50 @@ function stopSuite(){
         });
 }
 
+function getLastNodePosition(){
+    return nodePosition;
+}
+
+function setLastNodePosition(position) {
+    nodePosition = position;
+}
+
+last_updated="";
 socket.on('summary_info',function(data){
     var nodes=data[1];
     var getAllKeys = Object.keys(nodes);
     var getSingleKey= Object.keys(nodes)[0];
     //console.log(data[getAllKeys[5]]);
     var stateTotals=data[0]["state totals"];
+    var currentStates = data[0]["states"];
+    var numOfStates = data[0]["states"].length;
     
     //Respectively: white - 0, pink - 1, red - 2, khaki - 3, gold - 4, lime - 5, green - 6, deep-sky-blue - 7, blue - 8, light-gray - 9, gray - 10, black - 11
     var colors = {"white":"#FFFFFF", "pink":"#FF1493", "red":"#FF0000", "khaki":"#F0E68C", "gold":"#FFD700", "lime":"#00FF00", "green":"#008000", "deep-sky-blue":"#00BFFF", "blue":"#0000FF", "light-gray":"#D3D3D3", "gray":"#808080", "black":"#000000"};
-
     
     var svg = d3.select("body").select("#nodes");
-    var nodeXPosition = 0;
+    var nodeXPosition = 25;
     var nodeYPosition = 50;
-    for(var node in getAllKeys) {
-        nodeXPosition += 50;
+    svg.selectAll("*").remove();
+    console.log(currentStates);
+    for(var node in currentStates) {
+        console.log(node);
         var numOfNodes = d3.select("body").select("#nodes").selectAll("circle")[0].length;
-        console.log("Number of nodes: " + numOfNodes + "\nList size: " + getAllKeys.length);
-        if(numOfNodes < getAllKeys.length) {
+        console.log("Number of nodes: " + numOfNodes + "\nList size: " + numOfStates);
+        if(numOfNodes < numOfStates) {
+            if(numOfNodes == 0) {
+                setLastNodePosition({"x":nodeXPosition, "y":nodeYPosition});
+            } else {
+                nodeXPosition += 50;
+                setLastNodePosition({"x":nodeXPosition, "y":nodeYPosition});
+            }
             var element = svg.append("g")
                 .attr("id", "div" + node)
                 .style("visibility", "visible");
             element.append("circle")
                 .attr("id", "node" + node)
-                .attr("cx", nodeXPosition)
-                .attr("cy", nodeYPosition)
+                .attr("cx", getLastNodePosition()["x"])
+                .attr("cy", getLastNodePosition()["y"])
                 .attr("r", "25")
                 .attr("fill", function() {
                     switch(nodes[getAllKeys[node]]["state"]) {
@@ -75,11 +94,10 @@ socket.on('summary_info',function(data){
                 });
             element.append("text")
                 .attr("id", "text" + node)
-                .attr("x", nodeXPosition - 20)
-                .attr("y", nodeYPosition)
+                .attr("x", getLastNodePosition()["x"] - 20)
+                .attr("y", getLastNodePosition()["y"])
                 .attr("font-size", "15px")
                 .style("fill", function() {
-                    console.log("Style should work")
                     switch(nodes[getAllKeys[node]]["state"]) {
                         case "runahead": return colors["light-gray"];
                         case "waiting": return colors["deep-sky-blue"];
