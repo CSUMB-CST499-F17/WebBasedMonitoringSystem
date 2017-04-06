@@ -25,11 +25,19 @@
         <!-- Form Data, recevieing suite information from flask. -->
         <div id="formData">
             <form>
-                HOSTNAME: <input id="hostName" type="text" name="hostName"/>  
-                PORT-NUMBER: <input id="portNumber" type="text" name="portNumber"/> 
-                <input id="sendButton" type="button" name="index" value="Send" onClick="getData()"/>
+                suiteName: <input id="suiteName" type="text" name="suiteName"/>
+                <input id="sendButton" type="button" name="index" value="If running on localhost" onClick="getLocalData()">
+
             </form>
         </div>
+
+				<div id="formData">
+					 <form>
+							 HOSTNAME: <input id="hostName" type="text" name="hostName"/>
+							 PORT-NUMBER: <input id="portNumber" type="text" name="portNumber"/>
+							 <input id="sendButton" type="button" name="index" value="Send" onClick="getData()"/>
+					 </form>
+       </div>
 
 	    <!-- Table for the different possible status
 		     CSS styling needed to color code.
@@ -68,10 +76,12 @@
 	    </table>
 
 	    <!-- Last Time Updated -->
-	    <div id="updated" style="display: inline"> Last Updated: 
+
+	    <div id="updated" style="display: inline"> Last Updated:
 		    <div id ="information" style="display: inline"></div>
 	    </div>
-	    
+
+
 	    <ul>
 		    <p id="nodeOne"></p>
             <p id ="nodeTwo"></p>
@@ -80,11 +90,13 @@
             <p id ="nodeFive"></p>
 		    <p id ="nodeSix"></p>
         </ul>
-	 
+
+
 	     <svg id="nodes" width="550" height="500">
             <!--<circle cx="25" cy="25" r="25" fill="purple" />-->
         </svg>
-        
+
         <input id="stopSuiteButton" type="image" src="../static/stop.jpg" name="index" value="STOP" onClick="stopSuite()"/>
-    </body> 
+    </body>
+
 </html>

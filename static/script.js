@@ -6,15 +6,19 @@ window.onload = function(){
     document.getElementById("stopSuiteButton").style.visibility = "hidden";
 }
 
-var socket = io('http://127.0.0.1:5000');
+
+var socket = io(window.location.hostname+':5000');
+var portNumber=""
+var suiteName="";
 var hostName="";
-var portNumber="";
 var suite_information;
 var nodePosition;
 
-socket.on('connect', function(){});
-socket.on('disconnect');
 
+socket.on('connect', function(){
+
+});
+socket.on('disconnect');
 function getData(){
     hostName=$('#hostName').val();
     portNumber=$('#portNumber').val();
@@ -44,8 +48,32 @@ function getLastNodePosition(){
 function setLastNodePosition(position) {
     nodePosition = position;
 }
+function getLocalData(){
+    suiteName=$('#suiteName').val();
+    socket.emit('getName', {
+        'suiteName':suiteName
+    });
+    socket.on('name',function(data){
+
+    if(data["portNumber"]!=undefined)
+    {
+      setInterval(function() {
+          socket.emit('localData', {
+              'portNumber':data['portNumber']
+          });
+
+
+      }, 3000);
+    }
+  })
+
+
+
+}
+
 
 last_updated="";
+
 socket.on('summary_info',function(data){
     var nodes=data[1];
     var getAllKeys = Object.keys(nodes);
@@ -54,7 +82,7 @@ socket.on('summary_info',function(data){
     var stateTotals=data[0]["state totals"];
     var currentStates = data[0]["states"];
     var numOfStates = data[0]["states"].length;
-    
+
     //Respectively: white - 0, pink - 1, red - 2, khaki - 3, gold - 4, lime - 5, green - 6, deep-sky-blue - 7, blue - 8, light-gray - 9, gray - 10, black - 11
     var colors = {"white":"#FFFFFF", "pink":"#FF1493", "red":"#FF0000", "khaki":"#F0E68C", "gold":"#FFD700", "lime":"#00FF00", "green":"#008000", "deep-sky-blue":"#00BFFF", "blue":"#0000FF", "light-gray":"#D3D3D3", "gray":"#808080", "black":"#000000"};
     
@@ -202,11 +230,11 @@ socket.on('summary_info',function(data){
     document.getElementById("runahead").style.visibility = "visible";
     document.getElementById("updated").style.visibility = "visible";
     document.getElementById("stopSuiteButton").style.visibility = "visible";
-    
+
     //$('ul').html(buffer);
-    
+
     var th_elements = d3.select("body").select("table").select("tr").selectAll("th");
-    
+
     for(var element in th_elements[0]) {
         switch(th_elements[0][element].textContent.trim()) {
             case 'runahead': th_elements[0][element].style.backgroundColor = colors["blue"];
