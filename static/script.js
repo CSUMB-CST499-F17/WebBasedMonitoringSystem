@@ -3,7 +3,6 @@ window.onload = function(){
     document.getElementById("information").style.visibility = "hidden";
     document.getElementById("table").style.visibility = "hidden";
     document.getElementById("updated").style.visibility = "hidden";
-    document.getElementById("stopSuiteButton").style.visibility = "hidden";
 }
 
 
@@ -18,6 +17,7 @@ var nodePosition;
 socket.on('connect', function(){
 
 });
+
 socket.on('disconnect');
 function getData(){
     hostName=$('#hostName').val();
@@ -29,10 +29,21 @@ function getData(){
     }, 3000);
 }
 
-function stopSuite(){
-    //Clear Interval should be another function called in order to pause it.
+/**
+ * Play suite after pausing.
+ *
+ */
+
+function playSuite(){
+    getData();
+}
+
+function pauseSuite(){
     clearInterval(suite_information);
-    //Calls the endpoint to stop the suite that is currently running.
+}
+
+function stopSuite(){
+    clearInterval(suite_information);
     hostName=$('#hostName').val();
     portNumber=$('#portNumber').val();
         socket.emit('stop_suite', {
@@ -229,7 +240,6 @@ socket.on('summary_info',function(data){
     document.getElementById("table").style.visibility = "visible";
     document.getElementById("runahead").style.visibility = "visible";
     document.getElementById("updated").style.visibility = "visible";
-    document.getElementById("stopSuiteButton").style.visibility = "visible";
 
     //$('ul').html(buffer);
 
