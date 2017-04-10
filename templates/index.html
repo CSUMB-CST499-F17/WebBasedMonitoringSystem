@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<style>
-		table, th, td{
-            border: 1px solid black
-            };
-	</style>
 	<title>
 		Cylc Workflow Index Page
 	</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	<script src="https://code.jquery.com/jquery-2.2.3.js"
       integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="
 	  crossorigin="anonymous">
@@ -21,6 +19,12 @@
 	</script>
 	<script type="text/javascript" src="../static/script.js"></script>
 </head>
+    <div id="navbar">
+        <button class = "fa fa-stop" style="font-size:48px;color:red" onClick="stopSuite()"/>
+        <button class = "fa fa-pause" style="font-size:48px;color:blue" onClick="pauseSuite()"/>
+        <button class = "fa fa-play" style="font-size:48px;color:green" onClick="playSuite()"/>
+    </div>
+
     <body>
         <!-- Form Data, recevieing suite information from flask. -->
         <div id="formData">
@@ -93,10 +97,8 @@
 
 
 	     <svg id="nodes" width="550" height="500">
-            <!--<circle cx="25" cy="25" r="25" fill="purple" />-->
         </svg>
-
-        <input id="stopSuiteButton" type="image" src="../static/stop.jpg" name="index" value="STOP" onClick="stopSuite()"/>
+       
     </body>
 
 </html>
