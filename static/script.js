@@ -14,6 +14,7 @@ var suite_information;
 var nodePosition;
 
 
+
 socket.on('connect', function(){
 
 });
@@ -66,6 +67,7 @@ function getLocalData(){
     });
     socket.on('name',function(data){
 
+
     if(data["portNumber"]!=undefined)
     {
       setInterval(function() {
@@ -93,10 +95,18 @@ socket.on('summary_info',function(data){
     var stateTotals=data[0]["state totals"];
     var currentStates = data[0]["states"];
     var numOfStates = data[0]["states"].length;
+    //If ran locally data[3] will not be defined
+    if(data[3]!=undefined)
+    {
+    suiteName = data[3]["name"];
+  }
+  //set suiteName when rest of the data comin in
+  $("#nameOfSuite").text(suiteName);
+    //console.log(suiteName);
 
     //Respectively: white - 0, pink - 1, red - 2, khaki - 3, gold - 4, lime - 5, green - 6, deep-sky-blue - 7, blue - 8, light-gray - 9, gray - 10, black - 11
     var colors = {"white":"#FFFFFF", "pink":"#FF1493", "red":"#FF0000", "khaki":"#F0E68C", "gold":"#FFD700", "lime":"#00FF00", "green":"#008000", "deep-sky-blue":"#00BFFF", "blue":"#0000FF", "light-gray":"#D3D3D3", "gray":"#808080", "black":"#000000"};
-    
+
     var svg = d3.select("body").select("#nodes");
     var nodeXPosition = 25;
     var nodeYPosition = 50;

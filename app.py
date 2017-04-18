@@ -33,6 +33,12 @@ def message(message):
  #Verify not necessary: TODO: Verify = FALSE should not skip authentication.
  r=requests.get(link,auth=HTTPDigestAuth('anon','the quick brown fox'))
  data = r.json()
+ #grab name from other cylc endpoint
+ link = "http://"+ str(message["hostName"]) + ":"+str(message["portNumber"]) + '/id/identify'
+ r=requests.get(link,auth=HTTPDigestAuth('anon','the quick brown fox'))
+ name=r.json()
+ data.append({"name":name["name"]})
+ print json.dumps(data,indent=2)
  emit ('summary_info',data)
 
 @socketio.on('localData')
@@ -42,6 +48,7 @@ def local(message):
  app.logger.info('Info')
 # print message
 # print message["hostName"]
+#TODO:wrap in try catch so server doesn't crash
  link = "http://"+ str(socket.gethostname()) + ":" + str(message["portNumber"]) + '/state/get_state_summary'
  #Verify not necessary: TODO: Verify = FALSE should not skip authentication.
  r=requests.get(link,auth=HTTPDigestAuth('anon','the quick brown fox'))
@@ -59,6 +66,7 @@ def name(message):
  portNumber=43000
  r=["Error in request"]
  print r[0]
+ #check all ports that cylc searches through by default
  while portNumber<43101:
  	link = "http://"+ str(socket.gethostname()) + ":"+str(portNumber) + '/id/identify'
  #Verify not necessary: TODO: Verify = FALSE should not skip authentication.
