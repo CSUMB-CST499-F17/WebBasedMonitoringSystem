@@ -21,9 +21,13 @@
 	<script type="text/javascript" src="../static/script.js"></script>
 </head>
     <div id="navbar">
-        <button class = "fa fa-stop" style="font-size:48px;color:red" onClick="stopSuite()"/>
-        <button class = "fa fa-pause" style="font-size:48px;color:blue" onClick="pauseSuite()"/>
-        <button class = "fa fa-play" style="font-size:48px;color:green" onClick="playSuite()"/>
+        <button class = "fa fa-stop" style="font-size:48px;color:red" onClick="stopSuite()"></button>
+        <button class = "fa fa-pause" style="font-size:48px;color:blue" onClick="pauseSuite()"></button>
+        <button class = "fa fa-play" style="font-size:48px;color:green" onClick="playSuite()"></button>
+        
+        <div id="updated" style="display:right"> Last Updated:
+		    <div id ="information"></div>
+	    </div>
     </div>
 
     <body>
@@ -64,7 +68,7 @@
 			    <th> retrying</th>
 		    </tr>
 		    <tr>
-			    <td id="runahead"> </td>
+			    <td id="runahead"></td>
 			    <td id="waiting"> </td>
 			    <td id="held"> </td>
 			    <td id="queued"></td>
@@ -80,12 +84,10 @@
 		    </tr>
 	    </table>
 
-	    <!-- Last Time Updated -->
+        <table id = "tasks">
 
-	    <div id="updated" style="display: inline"> Last Updated:
-		    <div id ="information" style="display: inline"></div>
-	    </div>
 
+        </table>
 
 	    <ul>
 		    <p id="nodeOne"></p>

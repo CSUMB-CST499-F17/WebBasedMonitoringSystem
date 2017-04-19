@@ -5,3 +5,7 @@ table, th, td{
 #navbar{
     background-color: grey;
 }
+#information, #updated{
+    display:inline;
+    float:right;
+}
