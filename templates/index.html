@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>
 		Cylc Workflow Index Page
 	</title>
-	<h1 id="nameOfSuite"></h1>
     <link rel="stylesheet" type="text/css" href="../static/style.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,18 +20,25 @@
 	</script>
 	<script type="text/javascript" src="../static/script.js"></script>
 </head>
+
+    <!--MENU BAR -->
     <div id="navbar">
-        <button class = "fa fa-stop" style="font-size:48px;color:red" onClick="stopSuite()"></button>
-        <button class = "fa fa-pause" style="font-size:48px;color:blue" onClick="pauseSuite()"></button>
-        <button class = "fa fa-play" style="font-size:48px;color:green" onClick="playSuite()"></button>
         
-        <div id="updated" style="display:right"> Last Updated:
-		    <div id ="information"></div>
-	    </div>
+        <button class = "fa fa-stop" onClick="stopSuite()"></button>
+        <button class = "fa fa-pause" onClick="pauseSuite()"></button>
+        <button class = "fa fa-play" onClick="playSuite()"></button>
+        
+        <h1 id="nameOfSuite"></h1>
+        
+        <div id="updated"> Last Updated:&nbsp;
+		    <div id ="information"></div></br>
+            Seconds ago: <div id="seconds"> </div>
+        </div>
     </div>
 
-    <body>
-        <!-- Form Data, recevieing suite information from flask. -->
+    <!-- BODY -->
+    <body class="body">
+        <!-- Form Data -->
         <div id="formData">
             <form>
                 suiteName: <input id="suiteName" type="text" name="suiteName"/>
@@ -39,18 +46,16 @@
 
             </form>
         </div>
+        
+        <div id="formData">
+            <form>
+				HOSTNAME: <input id="hostName" type="text" name="hostName"/>
+				PORT-NUMBER: <input id="portNumber" type="text" name="portNumber"/>
+				<input id="sendButton" type="button" name="index" value="Send" onClick="getData()"/>
+			</form>
+        </div>
 
-				<div id="formData">
-					 <form>
-							 HOSTNAME: <input id="hostName" type="text" name="hostName"/>
-							 PORT-NUMBER: <input id="portNumber" type="text" name="portNumber"/>
-							 <input id="sendButton" type="button" name="index" value="Send" onClick="getData()"/>
-					 </form>
-       </div>
-
-	    <!-- Table for the different possible status
-		     CSS styling needed to color code.
-	     -->
+	    <!-- Table w. Color Statuses  -->
 	    <table id="table">
 		    <tr>
 			    <th> runahead</th>
@@ -84,18 +89,17 @@
 		    </tr>
 	    </table>
 
+        <!-- TODO: @karina tasks -->
         <table id = "tasks">
 
-
         </table>
-
 	    <ul>
-		    <p id="nodeOne"></p>
-            <p id ="nodeTwo"></p>
-		    <p id ="nodeThree"></p>
-		    <p id="nodeFour"></p>
-            <p id ="nodeFive"></p>
-		    <p id ="nodeSix"></p>
+		    <p id="node1"></p>
+            <p id ="node2"></p>
+		    <p id ="node3"></p>
+		    <p id="node4"></p>
+            <p id ="node5"></p>
+		    <p id ="node6"></p>
         </ul>
 
 
