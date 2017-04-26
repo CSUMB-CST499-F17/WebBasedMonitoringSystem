@@ -1,8 +1,8 @@
 //Sets the table visibility to false until the data has been emitted.
 window.onload = function(){
-    document.getElementById("information").style.visibility = "hidden";
+    //document.getElementById("information").style.visibility = "hidden";
     document.getElementById("table").style.visibility = "hidden";
-    //document.getElementById("updated").style.visibility = "hidden";
+    //document.getElementById("seconds").style.visibility = "hidden";
 }
 
 
@@ -12,9 +12,6 @@ var suiteName="";
 var hostName="";
 var suite_information;
 var nodePosition;
-var paused_suite = false;
-
-
 
 socket.on('connect', function(){
 
@@ -36,22 +33,18 @@ function playSuite(){
 }
 
 function pauseSuite(){
-    clearInterval(suite_information);
-    paused_suite = true;
+    clearInterval(suite_information); 
 }
 
 function stopSuite(){
 
-    if(paused_suite){
-        
-        clearInterval(suite_information);
-        hostName=$('#hostName').val();
-        portNumber=$('#portNumber').val();
-            socket.emit('stop_suite', {
-                'hostName':hostName,
-                'portNumber':portNumber
-            });
-    }
+    clearInterval(suite_information);
+    hostName=$('#hostName').val();
+    portNumber=$('#portNumber').val();
+        socket.emit('stop_suite', {
+            'hostName':hostName,
+            'portNumber':portNumber
+        });
 }
 
 function getLastNodePosition(){
@@ -89,6 +82,7 @@ socket.on('summary_info',function(data){
     var stateTotals=data[0]["state totals"];
     var currentStates = data[0]["states"];
     var numOfStates = data[0]["states"].length;
+    var cylc_tasks = {};
 
     //If ran locally data[3] will not be defined
     if(data[3]!=undefined)
@@ -195,23 +189,32 @@ socket.on('summary_info',function(data){
                 .text(nodes[getAllKeys[node]]["name"] + "\n" + nodes[getAllKeys[node]]["label"]);
         }
     }
-        //guaranteed by our suite
-		//TODO:just create these d3 objs dynamically
+    /**
 
-			d3.select("body").select("#nodeOne").text(nodes[getAllKeys[0]]["name"] +" "+nodes[getAllKeys[0]]["state"]+ " "+nodes[getAllKeys[0]]["label"]);
-		  d3.select("body").select("#nodeTwo").text(nodes[getAllKeys[1]]["name"]+" "+nodes[getAllKeys[1]]["state"]+ " "+nodes[getAllKeys[1]]["label"]);
-			d3.select("body").select("#nodeThree").text(nodes[getAllKeys[2]]["name"]+" "+nodes[getAllKeys[2]]["state"]+ " "+nodes[getAllKeys[2]]["label"]);
-			d3.select("body").select("#nodeFour").text(nodes[getAllKeys[3]]["name"] +" "+nodes[getAllKeys[3]]["state"]+ " "+nodes[getAllKeys[3]]["label"]);
-			d3.select("body").select("#nodeFive").text("state totals:" + stateTotals);
-		   d3.select("body").select("#nodeSix").text(getAllKeys);
+    d3.select("body").select("#nodeOne").text(nodes[getAllKeys[0]]["name"] +" "+nodes[getAllKeys[0]]["state"]+ " "+nodes[getAllKeys[0]]["label"]);
+	d3.select("body").select("#nodeTwo").text(nodes[getAllKeys[1]]["name"]+" "+nodes[getAllKeys[1]]["state"]+ " "+nodes[getAllKeys[1]]["label"]);
+	d3.select("body").select("#nodeThree").text(nodes[getAllKeys[2]]["name"]+" "+nodes[getAllKeys[2]]["state"]+ " "+nodes[getAllKeys[2]]["label"]);
+	d3.select("body").select("#nodeFour").text(nodes[getAllKeys[3]]["name"] +" "+nodes[getAllKeys[3]]["state"]+ " "+nodes[getAllKeys[3]]["label"]);
+	d3.select("body").select("#nodeFive").text("state totals:" + stateTotals);
+	d3.select("body").select("#nodeSix").text(getAllKeys);
             console.log(data);
-    
-    displayTasks(nodes, getAllKeys);
+    **/
+
+    displayTasks(nodes, getAllKeys, cylc_tasks);
 
     setStatesData(data);
-
-
-
+    
+    /**
+     * Function: Display Task Number and the tasks running on it.
+     **/    
+    var counter = 0;
+    for(task in cylc_tasks){
+        
+        counter++;
+        number = counter.toString();
+        d3.select("body").select("#node" + number).text("TASK NUMBER " + task + ": \t\t" + cylc_tasks[task]) ;
+    }
+	
 
     /**
      * Error Checking.
@@ -274,10 +277,9 @@ socket.on('summary_info',function(data){
  * Returns: void
  * Summary: Puts labels(key) in a dictionary with a list(value) of tasks running for each label.
  */
-function displayTasks(nodes, getAllKeys){
+function displayTasks(nodes, getAllKeys, cylc_tasks){
 
     var list = [];
-    var cylc_tasks = {};
 
     //console.log("KEYS", getAllKeys);  
    // console.log("Length", getAllKeys.length);
@@ -305,24 +307,6 @@ function displayTasks(nodes, getAllKeys){
             cylc_tasks[label].push(state);
         }
     }
-   
-  for(i in cylc_tasks){
-    console.log("Key is" + i);
-
-      console.log(typeof(cylc_tasks[i].length));
-
-      for(var j = 0; j < cylc_tasks[i].length; j++){
-        
-          //Even == STATE
-        if(j % 2 == 0){
-            console.log("State: ",cylc_tasks[i][j]);
-        }else{
-            console.log("Label:", cylc_tasks[i][j]);
-        }
-      }
-  }
-
-  console.log("LIST:", cylc_tasks);  
 }
 
 
@@ -335,7 +319,11 @@ function displayTasks(nodes, getAllKeys){
 
 function setStatesData(data){
 
-    last_updated = new Date(data[0].last_updated*1000);
+
+    var current_date = new Date().getTime()/1000;
+    var last = data[0].last_updated;
+    var last_updated = new Date(last*1000);
+    var sec = current_date - last;
 
 
     runahead = data[0]['state totals'].runahead;
@@ -364,6 +352,7 @@ function setStatesData(data){
     document.getElementById("succeeded").innerHTML = succeeded;
     document.getElementById("running").innerHTML = running;
     document.getElementById("information").innerHTML = last_updated;
+    document.getElementById("seconds").innerHTML = sec;
 
     /**
      * Elements Visible
@@ -372,5 +361,6 @@ function setStatesData(data){
     document.getElementById("table").style.visibility = "visible";
     document.getElementById("runahead").style.visibility = "visible";
     document.getElementById("updated").style.visibility = "visible"; 
+    document.getElementById("seconds").style.visibility = "visible";
 
 }

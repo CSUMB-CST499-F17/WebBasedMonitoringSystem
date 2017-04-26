@@ -2,10 +2,60 @@ table, th, td{
     border: 1px solid black;
 }
 
+
 #navbar{
-    background-color: grey;
+    margin-left:100px;
+    margin-right: 100px;
+    margin-top:10px;
+    background-color: #46A1E6;
+    border-radius:25px;
+    height:70px;
 }
 #information, #updated{
     display:inline;
     float:right;
+}
+.fa.fa-stop{
+    position:absolute;
+    top:20px;
+    margin-left: 25px;
+    font-size:48px;
+    color:red;
+}
+.fa.fa-pause{
+    position:absolute;
+    margin-left:90px;
+    top:20px;
+    font-size:48px;
+    color:blue;
+}
+.fa.fa-play{
+    position:absolute;
+    margin-left:155px;
+    top:20px;
+    font-size:48px;
+    color:green;
+}
+#updated{
+    position:absolute;
+    top:19px;
+    right:150px;
+    font-weight:bold;
+}
+#information{
+    color:red;
+}
+#sec{
+    font-weight:bold;
+    position:absolute;
+    top:50px;
+    right:150px;
+}
+#seconds{
+    color:red;
+}
+#nameOfSuite{
+    position:absolute;
+    top:0px;
+    right:600px;
 }
