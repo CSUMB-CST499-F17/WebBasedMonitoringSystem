@@ -19,9 +19,10 @@
 			src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js">
 	</script>
 	<script type="text/javascript" src="../static/script.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 </head>
 
-    <!--MENU BAR -->
+    <!-- MENU BAR
     <div id="navbar">
         
         <button class = "fa fa-stop" onClick="stopSuite()"></button>
@@ -34,29 +35,80 @@
 		    <div id ="information"></div></br>
             Seconds ago: <div id="seconds"> </div>
         </div>
-    </div>
+    </div> -->
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="../static/logo.png" width="30" height="30" alt="">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <button  type="button" class="btn btn-success btn-lg" onclick="playSuite();">
+                            <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-lg" onclick="pauseSuite();">
+                            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-lg" onclick="stopSuite();">
+                            <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+                        </button>
+                       <button type="button" class="btn btn-danger btn-lg" onclick="refreshPage();">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                       </button>
+                    </li>
+
+                    <!-- DROP DOWN -->
+                    <li id="dropdown" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Enter Info.<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id="newform" onclick="sumbitFormFunction();"> HostName and PortNumber</a></li>
+                            <li><a id="oldform" onclick="submitOldFormFunction();"> Suite Name </a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- FORM1 -->
+                <form class="navbar-form navbar-left" id="form1">
+                    <input id="suiteName" type="text" class="form-control" placeholder="Running Suite Name">
+                    <button type="button" class="btn btn-primary" onclick="getLocalData();">Submit</button>
+                </form>
+                <!-- FORM2 -->
+                <form class="navbar-form navbar-left" id="form2"> 
+                    <input type="text" id="hostName" class="form-control" placeholder="HostName">
+                    <input type="text"  id="portNumber" class="form-control" placeholder="PortNumber">
+                    <button type="button" class="btn btn-primary"  onclick="getData()">Submit</button>
+                </form>
+                <!-- Title -->
+                <ul class="nav navbar-nav navbar-center">
+                    <strong><p id="nameOfSuite" class="navbar-text"> </p></strong>
+                </ul>
+                <!-- Time -->
+                <ul class="nav navbar-nav navbar-right"> 
+                    <p class="navbar-text">Sec. Ago:</p>
+                    <p id ="seconds"class="navbar-text"></p>
+                    <p class="navbar-text">Last Update: </p>
+                    <p class="navbar-text" id="information">Time</p> 
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 
     <!-- BODY -->
-    <body class="body">
-        <!-- Form Data -->
-        <div id="formData">
-            <form>
-                suiteName: <input id="suiteName" type="text" name="suiteName"/>
-                <input id="sendButton" type="button" name="index" value="If running on localhost" onClick="getLocalData()">
-
-            </form>
-        </div>
-        
-        <div id="formData">
-            <form>
-				HOSTNAME: <input id="hostName" type="text" name="hostName"/>
-				PORT-NUMBER: <input id="portNumber" type="text" name="portNumber"/>
-				<input id="sendButton" type="button" name="index" value="Send" onClick="getData()"/>
-			</form>
-        </div>
-
-	    <!-- Table w. Color Statuses  -->
-	    <table id="table">
+    <body id="body" class="body">
+        <!-- Table w. Color Statuses  -->
+	    <table id="table" class="table table-borded">
 		    <tr>
 			    <th> runahead</th>
 			    <th> waiting</th>
@@ -88,6 +140,23 @@
 			    <td id="retrying"></td>
 		    </tr>
 	    </table>
+
+        <!-- TODO: REMOVE IF BOOTSTRAP SUBMIT WORKS -->        
+        <div id="formData">
+            <form>
+                suiteName: <input id="suiteName" type="text" name="suiteName"/>
+                <input id="sendButton" type="button" name="index" value="If running on localhost" onClick="getLocalData()">
+
+            </form>
+        </div> 
+        <!-- 
+        <div id="formData">
+            <form>
+				HOSTNAME: <input id="hostName" type="text" name="hostName"/>
+				PORT-NUMBER: <input id="portNumber" type="text" name="portNumber"/>
+				<input id="sendButton" type="button" name="index" value="Send" onClick="getData()"/>
+			</form>
+        </div>-->
 
         <!-- TODO: @karina tasks -->
         <table id = "tasks">
