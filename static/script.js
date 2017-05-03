@@ -1,8 +1,5 @@
 //Sets the table visibility to false until the data has been emitted.
-window.onload = function(){
-    //document.getElementById("information").style.visibility = "hidden";
-    document.getElementById("table").style.visibility = "hidden";
-    //document.getElementById("seconds").style.visibility = "hidden";
+window.onload = function(){ 
 }
 
 
@@ -18,14 +15,34 @@ socket.on('connect', function(){
 });
 
 socket.on('disconnect');
+
 function getData(){
+    hideAllForms(); 
     hostName=$('#hostName').val();
     portNumber=$('#portNumber').val();
+  
     suite_information = setInterval(function() { socket.emit('data', {
         'hostName':hostName,
         'portNumber':portNumber
         });
     }, 3000);
+}
+
+function hideAllForms(){
+    $("#dropdown").css('display','none');
+    $("#form1").css('display','none');
+    $("#form2").css('display','none');
+
+}
+
+function sumbitFormFunction(){ 
+    $("#form1").css('display','none');
+    $("#form2").css('display','inline-block');
+}
+
+function submitOldFormFunction(){
+    $("#form2").css('display','none');
+    $("#form1").css('display','inline-block');
 }
 
 function playSuite(){
@@ -36,6 +53,10 @@ function pauseSuite(){
     clearInterval(suite_information); 
 }
 
+function refreshPage(){
+    window.location.reload();
+}
+
 function stopSuite(){
 
     clearInterval(suite_information);
@@ -44,8 +65,7 @@ function stopSuite(){
         socket.emit('stop_suite', {
             'hostName':hostName,
             'portNumber':portNumber
-        });
-}
+        });}
 
 function getLastNodePosition(){
     return nodePosition;
@@ -54,7 +74,11 @@ function getLastNodePosition(){
 function setLastNodePosition(position) {
     nodePosition = position;
 }
-function getLocalData(){
+
+function getLocalData(){ 
+    
+    hideAllForms();
+
     suiteName=$('#suiteName').val();
     socket.emit('getName', {
         'suiteName':suiteName
@@ -91,8 +115,6 @@ socket.on('summary_info',function(data){
   }
   //set suiteName when rest of the data comin in
   $("#nameOfSuite").text(suiteName);
-    //console.log(suiteName);
-
 
     //Respectively: white - 0, pink - 1, red - 2, khaki - 3, gold - 4, lime - 5, green - 6, deep-sky-blue - 7, blue - 8, light-gray - 9, gray - 10, black - 11
     var colors = {"white":"#FFFFFF", "pink":"#FF1493", "red":"#FF0000", "khaki":"#F0E68C", "gold":"#FFD700", "lime":"#00FF00", "green":"#008000", "deep-sky-blue":"#00BFFF", "blue":"#0000FF", "light-gray":"#D3D3D3", "gray":"#808080", "black":"#000000"};
@@ -200,8 +222,7 @@ socket.on('summary_info',function(data){
             console.log(data);
     **/
 
-    displayTasks(nodes, getAllKeys, cylc_tasks);
-
+    getTasks(nodes, getAllKeys, cylc_tasks);
     setStatesData(data);
     
     /**
@@ -277,14 +298,10 @@ socket.on('summary_info',function(data){
  * Returns: void
  * Summary: Puts labels(key) in a dictionary with a list(value) of tasks running for each label.
  */
-function displayTasks(nodes, getAllKeys, cylc_tasks){
+function getTasks(nodes, getAllKeys, cylc_tasks){
 
     var list = [];
 
-    //console.log("KEYS", getAllKeys);  
-   // console.log("Length", getAllKeys.length);
-    
-    
     for(var i = 0; i < getAllKeys.length; i++){ 
         
         var label = nodes[getAllKeys[i]]['label'];
@@ -292,9 +309,6 @@ function displayTasks(nodes, getAllKeys, cylc_tasks){
         var state = nodes[getAllKeys[i]]['state'];
         
         if(!(label in cylc_tasks)){
-            
-            //console.log("LABELin ", label);
-            //console.log("Namein ", name);
 
             list.push(name);
             list.push(state);
@@ -302,7 +316,6 @@ function displayTasks(nodes, getAllKeys, cylc_tasks){
             list = [];
         }
         else{
-            //console.log("Else");
             cylc_tasks[label].push(name);
             cylc_tasks[label].push(state);
         }
@@ -322,9 +335,8 @@ function setStatesData(data){
 
     var current_date = new Date().getTime()/1000;
     var last = data[0].last_updated;
-    var last_updated = new Date(last*1000);
-    var sec = current_date - last;
-
+    var last_updated = new Date(last*1000).toLocaleString();
+    var sec = Math.round(current_date - last);   
 
     runahead = data[0]['state totals'].runahead;
     if(runahead == null | runahead == undefined){
@@ -358,9 +370,7 @@ function setStatesData(data){
      * Elements Visible
      */
     document.getElementById("information").style.visibility = "visible";
-    document.getElementById("table").style.visibility = "visible";
     document.getElementById("runahead").style.visibility = "visible";
-    document.getElementById("updated").style.visibility = "visible"; 
-    document.getElementById("seconds").style.visibility = "visible";
+    
 
 }
