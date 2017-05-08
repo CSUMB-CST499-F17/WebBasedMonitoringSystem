@@ -33,6 +33,12 @@ def message(message):
  #Verify not necessary: TODO: Verify = FALSE should not skip authentication.
  r=requests.get(link,auth=HTTPDigestAuth('anon','the quick brown fox'))
  data = r.json()
+ try:
+    link2 = "http://" + str( message["hostName"]) + ":" + str(message["portNumber"]) + '/info/get_graph_raw?stop_point_string=' + data[0]["newest cycle point string"] + '&ungroup_recursive=False&start_point_string='+data[0]["oldest cycle point string"]+'&group_nodes=None&ungroup_nodes=None&ungroup_all=False&group_all=True'
+    r2=requests.get(link2,auth=HTTPDigestAuth('anon','the quick brown fox'))
+    data.append(r2.json())
+ except:
+    print "Empty list"
  #grab name from other cylc endpoint
  link = "http://"+ str(message["hostName"]) + ":"+str(message["portNumber"]) + '/id/identify'
  r=requests.get(link,auth=HTTPDigestAuth('anon','the quick brown fox'))

@@ -19,3 +19,20 @@
     color:red;
 }
 
+.node text { font: 12px sans-serif; }
+
+.link {
+   fill: none;
+   stroke: #ccc;
+   stroke-width: 2px;
+}
+
+.links {
+    fill: none;
+   stroke: #ccc;
+   stroke-width: 5px;
+}
+
+.nodes {
+   stroke-width: 2px;
+}
