@@ -6,24 +6,10 @@ from flask import jsonify
 from requests.auth import HTTPDigestAuth
 import socket
 
-#imports to use flask-login
-from flask_login import LoginManager, login_user, login_required, logout_user
 
-#imports for database and password encryption
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
+
 
 app = flask.Flask(__name__)
-
-
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-#database and bcrypt
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///auth.sqlite3'
-app.config['SECRET_KEY'] = "\xb6\x13\x14g'\x10A\xec\x1e\x1a\x110*\xd0\xfe\x8d\x9a\x80-QG$\xdb\xad"
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
 
 
 socketio = flask_socketio.SocketIO(app)
