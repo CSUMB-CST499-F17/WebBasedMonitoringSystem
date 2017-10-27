@@ -1,0 +1,2191 @@
+kara@kara-Capstone:~$ cylc reg /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic
+REGISTER /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic
+kara@kara-Capstone:~$ cylc help
+
+Cylc ("silk") is a suite engine and metascheduler that specializes in
+cycling weather and climate forecasting suites and related processing
+(but it can also be used for one-off workflows of non-cycling tasks).
+For detailed documentation see the Cylc User Guide (cylc doc --help).
+
+Version 7.5.0
+
+The graphical user interface for cylc is "gcylc" (a.k.a. "cylc gui").
+
+USAGE:
+  % cylc -v,--version                   # print cylc version
+  % cylc version                        # (ditto, by command)
+  % cylc help,--help,-h,?               # print this help page
+
+  % cylc help CATEGORY                  # print help by category
+  % cylc CATEGORY help                  # (ditto)
+  % cylc help [CATEGORY] COMMAND        # print command help
+
+  % cylc COMMAND [options] SUITE [arguments]
+  % cylc COMMAND [options] SUITE TASK [arguments]
+
+Commands can be abbreviated as long as there is no ambiguity in
+the abbreviated command:
+
+  % cylc trigger SUITE TASK             # trigger TASK in SUITE
+  % cylc tri SUITE TASK                 # ditto
+  % cylc t SUITE TASK                   # ditto
+
+  % cylc get                            # Error: ambiguous command
+
+TASK IDENTIFICATION IN CYLC SUITES
+  Tasks are identified by NAME.CYCLE_POINT where POINT is either a
+  date-time or an integer.
+  Date-time cycle points are in an ISO 8601 date-time format, typically
+  CCYYMMDDThhmm followed by a time zone - e.g. 20101225T0600Z.
+  Integer cycle points (including those for one-off suites) are integers
+  - just '1' for one-off suites.
+
+HOW TO DRILL DOWN TO COMMAND USAGE HELP:
+  % cylc help           # list all available categories (this page)
+  % cylc help prep      # list commands in category 'preparation'
+  % cylc help prep edit # command usage help for 'cylc [prep] edit'
+
+Command CATEGORIES:
+  control ....... Suite start up, monitoring, and control.
+  information ... Interrogate suite definitions and running suites.
+  all ........... The complete command set.
+  task .......... The task messaging interface.
+  license|GPL ... Software licensing information (GPL v3.0).
+  admin ......... Cylc installation, testing, and example suites.
+  preparation ... Suite editing, validation, visualization, etc.
+  hook .......... Suite and task event hook scripts.
+  discovery ..... Detect running suites.
+  utility ....... Cycle arithmetic and templating, etc.
+kara@kara-Capstone:~$ cylc control
+CATEGORY: control - Suite start up, monitoring, and control.
+
+HELP: cylc [control] COMMAND help,--help
+  You can abbreviate control and COMMAND.
+  The category control may be omitted.
+
+COMMANDS:
+  broadcast|bcast ................ Change suite [runtime] settings on the fly
+  checkpoint ..................... Tell suite to checkpoint its current state
+  ext-trigger|external-trigger ... Report an external trigger event to a suite
+  gui ............................ (a.k.a. gcylc) cylc GUI for suite control etc.
+  hold ........................... Hold (pause) suites or individual tasks
+  insert ......................... Insert tasks into a running suite
+  kill ........................... Kill submitted or running tasks
+  nudge .......................... Cause the cylc task processing loop to be invoked
+  poll ........................... Poll submitted or running tasks
+  release|unhold ................. Release (unpause) suites or individual tasks
+  reload ......................... Reload the suite definition at run time
+  remove ......................... Remove tasks from a running suite
+  reset .......................... Force one or more tasks to change state.
+  restart ........................ Restart a suite from a previous state
+  run|start ...................... Start a suite at a given cycle point
+  set-runahead ................... Change the runahead limit in a running suite.
+  set-verbosity .................. Change a running suite's logging verbosity
+  spawn .......................... Force one or more tasks to spawn their successors.
+  stop|shutdown .................. Shut down running suites
+  trigger ........................ Manually trigger or re-trigger a task
+kara@kara-Capstone:~$ cylc help
+
+Cylc ("silk") is a suite engine and metascheduler that specializes in
+cycling weather and climate forecasting suites and related processing
+(but it can also be used for one-off workflows of non-cycling tasks).
+For detailed documentation see the Cylc User Guide (cylc doc --help).
+
+Version 7.5.0
+
+The graphical user interface for cylc is "gcylc" (a.k.a. "cylc gui").
+
+USAGE:
+  % cylc -v,--version                   # print cylc version
+  % cylc version                        # (ditto, by command)
+  % cylc help,--help,-h,?               # print this help page
+
+  % cylc help CATEGORY                  # print help by category
+  % cylc CATEGORY help                  # (ditto)
+  % cylc help [CATEGORY] COMMAND        # print command help
+
+  % cylc COMMAND [options] SUITE [arguments]
+  % cylc COMMAND [options] SUITE TASK [arguments]
+
+Commands can be abbreviated as long as there is no ambiguity in
+the abbreviated command:
+
+  % cylc trigger SUITE TASK             # trigger TASK in SUITE
+  % cylc tri SUITE TASK                 # ditto
+  % cylc t SUITE TASK                   # ditto
+
+  % cylc get                            # Error: ambiguous command
+
+TASK IDENTIFICATION IN CYLC SUITES
+  Tasks are identified by NAME.CYCLE_POINT where POINT is either a
+  date-time or an integer.
+  Date-time cycle points are in an ISO 8601 date-time format, typically
+  CCYYMMDDThhmm followed by a time zone - e.g. 20101225T0600Z.
+  Integer cycle points (including those for one-off suites) are integers
+  - just '1' for one-off suites.
+
+HOW TO DRILL DOWN TO COMMAND USAGE HELP:
+  % cylc help           # list all available categories (this page)
+  % cylc help prep      # list commands in category 'preparation'
+  % cylc help prep edit # command usage help for 'cylc [prep] edit'
+
+Command CATEGORIES:
+  control ....... Suite start up, monitoring, and control.
+  information ... Interrogate suite definitions and running suites.
+  all ........... The complete command set.
+  task .......... The task messaging interface.
+  license|GPL ... Software licensing information (GPL v3.0).
+  admin ......... Cylc installation, testing, and example suites.
+  preparation ... Suite editing, validation, visualization, etc.
+  hook .......... Suite and task event hook scripts.
+  discovery ..... Detect running suites.
+  utility ....... Cycle arithmetic and templating, etc.
+kara@kara-Capstone:~$ cylc preparation
+CATEGORY: preparation - Suite editing, validation, visualization, etc.
+
+HELP: cylc [preparation] COMMAND help,--help
+  You can abbreviate preparation and COMMAND.
+  The category preparation may be omitted.
+
+COMMANDS:
+  5to6 ............ Improve the cylc 6 compatibility of a cylc 5 suite file
+  diff|compare .... Compare two suite definitions and print differences
+  edit ............ Edit suite definitions, optionally inlined
+  get-directory ... Retrieve suite source directory paths
+  graph ........... Plot suite dependency graphs and runtime hierarchies
+  graph-diff ...... Compare two suite dependencies or runtime hierarchies
+  jobscript ....... Generate a task job script and print it to stdout
+  list|ls ......... List suite tasks and family namespaces
+  print ........... Print registered suites
+  register ........ Register a suite for use
+  search|grep ..... Search in suite definitions
+  validate ........ Parse and validate suite definitions
+  view ............ View suite definitions, inlined and Jinja2 processed
+kara@kara-Capstone:~$ cylc run /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic --debug
+            ._.                                                       
+            | |                 The Cylc Suite Engine [7.5.0]         
+._____._. ._| |_____.           Copyright (C) 2008-2017 NIWA          
+| .___| | | | | .___|  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+| !___| !_! | | !___.  This program comes with ABSOLUTELY NO WARRANTY;
+!_____!___. |_!_____!  see `cylc warranty`.  It is free software, you 
+      .___! |           are welcome to redistribute it under certain  
+      !_____!                conditions; see `cylc conditions`.       
+2017-10-26T17:05:31-07 CRITICAL - Traceback (most recent call last):
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 234, in start
+	    self.configure()
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 306, in configure
+	    self.configure_suite()
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 943, in configure_suite
+	    self.load_suiterc(reconfigure)
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 876, in load_suiterc
+	    self.suite_srv_files_mgr.FILE_BASE_SUITE_RC + '.processed'),
+	  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 109, in get_inst
+	    vis_start_string, vis_stop_string, mem_log_func)
+	  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 182, in __init__
+	    output_fname=output_fname)
+	  File "/opt/cylc-7.5.0/lib/cylc/cfgspec/suite.py", line 566, in get_inst
+	    cls._INSTANCES[fpath].loadcfg(fpath, "suite definition")
+	  File "/opt/cylc-7.5.0/lib/parsec/config.py", line 68, in loadcfg
+	    sparse = parse(rcfile, self.output_fname, self.tvars)
+	  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 313, in parse
+	    flines = read_and_proc(fpath, template_vars)
+	  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 240, in read_and_proc
+	    with open(fpath) as f:
+	IOError: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+	
+2017-10-26T17:05:31-07 ERROR - error caught: cleaning up before exit
+2017-10-26T17:05:31-07 INFO - Suite shutting down - ERROR: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+2017-10-26T17:05:31-07 INFO - DONE
+Traceback (most recent call last):
+  File "/opt/cylc-7.5.0/bin/cylc-run", line 31, in <module>
+    main(is_restart=False)
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler_cli.py", line 65, in main
+    scheduler.start()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 234, in start
+    self.configure()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 306, in configure
+    self.configure_suite()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 943, in configure_suite
+    self.load_suiterc(reconfigure)
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 876, in load_suiterc
+    self.suite_srv_files_mgr.FILE_BASE_SUITE_RC + '.processed'),
+  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 109, in get_inst
+    vis_start_string, vis_stop_string, mem_log_func)
+  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 182, in __init__
+    output_fname=output_fname)
+  File "/opt/cylc-7.5.0/lib/cylc/cfgspec/suite.py", line 566, in get_inst
+    cls._INSTANCES[fpath].loadcfg(fpath, "suite definition")
+  File "/opt/cylc-7.5.0/lib/parsec/config.py", line 68, in loadcfg
+    sparse = parse(rcfile, self.output_fname, self.tvars)
+  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 313, in parse
+    flines = read_and_proc(fpath, template_vars)
+  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 240, in read_and_proc
+    with open(fpath) as f:
+IOError: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+kara@kara-Capstone:~$ cylc run nwp/test1 --debug
+            ._.                                                       
+            | |                 The Cylc Suite Engine [7.5.0]         
+._____._. ._| |_____.           Copyright (C) 2008-2017 NIWA          
+| .___| | | | | .___|  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+| !___| !_! | | !___.  This program comes with ABSOLUTELY NO WARRANTY;
+!_____!___. |_!_____!  see `cylc warranty`.  It is free software, you 
+      .___! |           are welcome to redistribute it under certain  
+      !_____!                conditions; see `cylc conditions`.       
+2017-10-26T17:05:54-07 CRITICAL - Traceback (most recent call last):
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 234, in start
+	    self.configure()
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 306, in configure
+	    self.configure_suite()
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 943, in configure_suite
+	    self.load_suiterc(reconfigure)
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 876, in load_suiterc
+	    self.suite_srv_files_mgr.FILE_BASE_SUITE_RC + '.processed'),
+	  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 109, in get_inst
+	    vis_start_string, vis_stop_string, mem_log_func)
+	  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 182, in __init__
+	    output_fname=output_fname)
+	  File "/opt/cylc-7.5.0/lib/cylc/cfgspec/suite.py", line 566, in get_inst
+	    cls._INSTANCES[fpath].loadcfg(fpath, "suite definition")
+	  File "/opt/cylc-7.5.0/lib/parsec/config.py", line 68, in loadcfg
+	    sparse = parse(rcfile, self.output_fname, self.tvars)
+	  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 313, in parse
+	    flines = read_and_proc(fpath, template_vars)
+	  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 240, in read_and_proc
+	    with open(fpath) as f:
+	IOError: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+	
+2017-10-26T17:05:54-07 ERROR - error caught: cleaning up before exit
+2017-10-26T17:05:54-07 INFO - Suite shutting down - ERROR: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+2017-10-26T17:05:54-07 INFO - DONE
+Traceback (most recent call last):
+  File "/opt/cylc-7.5.0/bin/cylc-run", line 31, in <module>
+    main(is_restart=False)
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler_cli.py", line 65, in main
+    scheduler.start()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 234, in start
+    self.configure()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 306, in configure
+    self.configure_suite()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 943, in configure_suite
+    self.load_suiterc(reconfigure)
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 876, in load_suiterc
+    self.suite_srv_files_mgr.FILE_BASE_SUITE_RC + '.processed'),
+  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 109, in get_inst
+    vis_start_string, vis_stop_string, mem_log_func)
+  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 182, in __init__
+    output_fname=output_fname)
+  File "/opt/cylc-7.5.0/lib/cylc/cfgspec/suite.py", line 566, in get_inst
+    cls._INSTANCES[fpath].loadcfg(fpath, "suite definition")
+  File "/opt/cylc-7.5.0/lib/parsec/config.py", line 68, in loadcfg
+    sparse = parse(rcfile, self.output_fname, self.tvars)
+  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 313, in parse
+    flines = read_and_proc(fpath, template_vars)
+  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 240, in read_and_proc
+    with open(fpath) as f:
+IOError: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+kara@kara-Capstone:~$ cylc reg nwp/test2 /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic
+REGISTER nwp/test2: /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic
+kara@kara-Capstone:~$ cylc run nwp/test2 --debug
+            ._.                                                       
+            | |                 The Cylc Suite Engine [7.5.0]         
+._____._. ._| |_____.           Copyright (C) 2008-2017 NIWA          
+| .___| | | | | .___|  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+| !___| !_! | | !___.  This program comes with ABSOLUTELY NO WARRANTY;
+!_____!___. |_!_____!  see `cylc warranty`.  It is free software, you 
+      .___! |           are welcome to redistribute it under certain  
+      !_____!                conditions; see `cylc conditions`.       
+2017-10-26T17:06:21-07 CRITICAL - Traceback (most recent call last):
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 234, in start
+	    self.configure()
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 306, in configure
+	    self.configure_suite()
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 943, in configure_suite
+	    self.load_suiterc(reconfigure)
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 876, in load_suiterc
+	    self.suite_srv_files_mgr.FILE_BASE_SUITE_RC + '.processed'),
+	  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 109, in get_inst
+	    vis_start_string, vis_stop_string, mem_log_func)
+	  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 182, in __init__
+	    output_fname=output_fname)
+	  File "/opt/cylc-7.5.0/lib/cylc/cfgspec/suite.py", line 566, in get_inst
+	    cls._INSTANCES[fpath].loadcfg(fpath, "suite definition")
+	  File "/opt/cylc-7.5.0/lib/parsec/config.py", line 68, in loadcfg
+	    sparse = parse(rcfile, self.output_fname, self.tvars)
+	  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 313, in parse
+	    flines = read_and_proc(fpath, template_vars)
+	  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 240, in read_and_proc
+	    with open(fpath) as f:
+	IOError: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+	
+2017-10-26T17:06:21-07 ERROR - error caught: cleaning up before exit
+2017-10-26T17:06:21-07 INFO - Suite shutting down - ERROR: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+2017-10-26T17:06:21-07 INFO - DONE
+Traceback (most recent call last):
+  File "/opt/cylc-7.5.0/bin/cylc-run", line 31, in <module>
+    main(is_restart=False)
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler_cli.py", line 65, in main
+    scheduler.start()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 234, in start
+    self.configure()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 306, in configure
+    self.configure_suite()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 943, in configure_suite
+    self.load_suiterc(reconfigure)
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 876, in load_suiterc
+    self.suite_srv_files_mgr.FILE_BASE_SUITE_RC + '.processed'),
+  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 109, in get_inst
+    vis_start_string, vis_stop_string, mem_log_func)
+  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 182, in __init__
+    output_fname=output_fname)
+  File "/opt/cylc-7.5.0/lib/cylc/cfgspec/suite.py", line 566, in get_inst
+    cls._INSTANCES[fpath].loadcfg(fpath, "suite definition")
+  File "/opt/cylc-7.5.0/lib/parsec/config.py", line 68, in loadcfg
+    sparse = parse(rcfile, self.output_fname, self.tvars)
+  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 313, in parse
+    flines = read_and_proc(fpath, template_vars)
+  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 240, in read_and_proc
+    with open(fpath) as f:
+IOError: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+kara@kara-Capstone:~$ cylc reg nwp/test2 /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/
+REGISTER nwp/test2: /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/
+kara@kara-Capstone:~$ cylc run nwp/test2 --debug
+            ._.                                                       
+            | |                 The Cylc Suite Engine [7.5.0]         
+._____._. ._| |_____.           Copyright (C) 2008-2017 NIWA          
+| .___| | | | | .___|  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+| !___| !_! | | !___.  This program comes with ABSOLUTELY NO WARRANTY;
+!_____!___. |_!_____!  see `cylc warranty`.  It is free software, you 
+      .___! |           are welcome to redistribute it under certain  
+      !_____!                conditions; see `cylc conditions`.       
+2017-10-26T17:06:48-07 CRITICAL - Traceback (most recent call last):
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 234, in start
+	    self.configure()
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 306, in configure
+	    self.configure_suite()
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 943, in configure_suite
+	    self.load_suiterc(reconfigure)
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 876, in load_suiterc
+	    self.suite_srv_files_mgr.FILE_BASE_SUITE_RC + '.processed'),
+	  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 109, in get_inst
+	    vis_start_string, vis_stop_string, mem_log_func)
+	  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 182, in __init__
+	    output_fname=output_fname)
+	  File "/opt/cylc-7.5.0/lib/cylc/cfgspec/suite.py", line 566, in get_inst
+	    cls._INSTANCES[fpath].loadcfg(fpath, "suite definition")
+	  File "/opt/cylc-7.5.0/lib/parsec/config.py", line 68, in loadcfg
+	    sparse = parse(rcfile, self.output_fname, self.tvars)
+	  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 313, in parse
+	    flines = read_and_proc(fpath, template_vars)
+	  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 240, in read_and_proc
+	    with open(fpath) as f:
+	IOError: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+	
+2017-10-26T17:06:48-07 ERROR - error caught: cleaning up before exit
+2017-10-26T17:06:48-07 INFO - Suite shutting down - ERROR: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+2017-10-26T17:06:48-07 INFO - DONE
+Traceback (most recent call last):
+  File "/opt/cylc-7.5.0/bin/cylc-run", line 31, in <module>
+    main(is_restart=False)
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler_cli.py", line 65, in main
+    scheduler.start()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 234, in start
+    self.configure()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 306, in configure
+    self.configure_suite()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 943, in configure_suite
+    self.load_suiterc(reconfigure)
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 876, in load_suiterc
+    self.suite_srv_files_mgr.FILE_BASE_SUITE_RC + '.processed'),
+  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 109, in get_inst
+    vis_start_string, vis_stop_string, mem_log_func)
+  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 182, in __init__
+    output_fname=output_fname)
+  File "/opt/cylc-7.5.0/lib/cylc/cfgspec/suite.py", line 566, in get_inst
+    cls._INSTANCES[fpath].loadcfg(fpath, "suite definition")
+  File "/opt/cylc-7.5.0/lib/parsec/config.py", line 68, in loadcfg
+    sparse = parse(rcfile, self.output_fname, self.tvars)
+  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 313, in parse
+    flines = read_and_proc(fpath, template_vars)
+  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 240, in read_and_proc
+    with open(fpath) as f:
+IOError: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+kara@kara-Capstone:~$ cd /tmp
+kara@kara-Capstone:/tmp$ ls
+config-err-omgGKf
+cylc-examples
+gnome-software-JUD78Y
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-colord.service-bYlHFc
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-rtkit-daemon.service-KYzm4O
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-systemd-hostnamed.service-EJQftN
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-systemd-timesyncd.service-W3xIVo
+unity_support_test.1
+kara@kara-Capstone:/tmp$ cd cylc-examples/
+kara@kara-Capstone:/tmp/cylc-examples$ ls
+7.5.0
+kara@kara-Capstone:/tmp/cylc-examples$ cd 7.5.0/
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0$ ls
+tutorial
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0$ cd tutorial/
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ ls
+oneoff
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ cd oneoff/
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff$ ls
+basic
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff$ cd basic/
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic$ ls
+log  share  work
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic$ cylc valid nwp/test2
+[Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic$ ls
+log  share  work
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic$ cylc run nwp/test1 --debug
+            ._.                                                       
+            | |                 The Cylc Suite Engine [7.5.0]         
+._____._. ._| |_____.           Copyright (C) 2008-2017 NIWA          
+| .___| | | | | .___|  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+| !___| !_! | | !___.  This program comes with ABSOLUTELY NO WARRANTY;
+!_____!___. |_!_____!  see `cylc warranty`.  It is free software, you 
+      .___! |           are welcome to redistribute it under certain  
+      !_____!                conditions; see `cylc conditions`.       
+2017-10-26T17:09:40-07 CRITICAL - Traceback (most recent call last):
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 234, in start
+	    self.configure()
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 306, in configure
+	    self.configure_suite()
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 943, in configure_suite
+	    self.load_suiterc(reconfigure)
+	  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 876, in load_suiterc
+	    self.suite_srv_files_mgr.FILE_BASE_SUITE_RC + '.processed'),
+	  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 109, in get_inst
+	    vis_start_string, vis_stop_string, mem_log_func)
+	  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 182, in __init__
+	    output_fname=output_fname)
+	  File "/opt/cylc-7.5.0/lib/cylc/cfgspec/suite.py", line 566, in get_inst
+	    cls._INSTANCES[fpath].loadcfg(fpath, "suite definition")
+	  File "/opt/cylc-7.5.0/lib/parsec/config.py", line 68, in loadcfg
+	    sparse = parse(rcfile, self.output_fname, self.tvars)
+	  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 313, in parse
+	    flines = read_and_proc(fpath, template_vars)
+	  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 240, in read_and_proc
+	    with open(fpath) as f:
+	IOError: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+	
+2017-10-26T17:09:40-07 ERROR - error caught: cleaning up before exit
+2017-10-26T17:09:40-07 INFO - Suite shutting down - ERROR: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+2017-10-26T17:09:40-07 INFO - DONE
+Traceback (most recent call last):
+  File "/opt/cylc-7.5.0/bin/cylc-run", line 31, in <module>
+    main(is_restart=False)
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler_cli.py", line 65, in main
+    scheduler.start()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 234, in start
+    self.configure()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 306, in configure
+    self.configure_suite()
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 943, in configure_suite
+    self.load_suiterc(reconfigure)
+  File "/opt/cylc-7.5.0/lib/cylc/scheduler.py", line 876, in load_suiterc
+    self.suite_srv_files_mgr.FILE_BASE_SUITE_RC + '.processed'),
+  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 109, in get_inst
+    vis_start_string, vis_stop_string, mem_log_func)
+  File "/opt/cylc-7.5.0/lib/cylc/config.py", line 182, in __init__
+    output_fname=output_fname)
+  File "/opt/cylc-7.5.0/lib/cylc/cfgspec/suite.py", line 566, in get_inst
+    cls._INSTANCES[fpath].loadcfg(fpath, "suite definition")
+  File "/opt/cylc-7.5.0/lib/parsec/config.py", line 68, in loadcfg
+    sparse = parse(rcfile, self.output_fname, self.tvars)
+  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 313, in parse
+    flines = read_and_proc(fpath, template_vars)
+  File "/opt/cylc-7.5.0/lib/parsec/fileparse.py", line 240, in read_and_proc
+    with open(fpath) as f:
+IOError: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic$ cylc run nwp/test1
+            ._.                                                       
+            | |                 The Cylc Suite Engine [7.5.0]         
+._____._. ._| |_____.           Copyright (C) 2008-2017 NIWA          
+| .___| | | | | .___|  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+| !___| !_! | | !___.  This program comes with ABSOLUTELY NO WARRANTY;
+!_____!___. |_!_____!  see `cylc warranty`.  It is free software, you 
+      .___! |           are welcome to redistribute it under certain  
+      !_____!                conditions; see `cylc conditions`.       
+2017-10-26T18:16:45-07 INFO - Suite shutting down - ERROR: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic$ cylc reg nwp/test5 /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/
+REGISTER nwp/test5: /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic$ cylc run nwp/test5
+            ._.                                                       
+            | |                 The Cylc Suite Engine [7.5.0]         
+._____._. ._| |_____.           Copyright (C) 2008-2017 NIWA          
+| .___| | | | | .___|  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+| !___| !_! | | !___.  This program comes with ABSOLUTELY NO WARRANTY;
+!_____!___. |_!_____!  see `cylc warranty`.  It is free software, you 
+      .___! |           are welcome to redistribute it under certain  
+      !_____!                conditions; see `cylc conditions`.       
+2017-10-26T18:18:17-07 INFO - Suite shutting down - ERROR: [Errno 2] No such file or directory: '/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/suite.rc'
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic$ cylc import-examples /tmp
+ERROR: /tmp/cylc-examples/7.5.0 already exists.
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic$ cd ..
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff$ cd ..
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ cd ..
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0$ cd ..
+kara@kara-Capstone:/tmp/cylc-examples$ cd ..
+kara@kara-Capstone:/tmp$ rmdir -r cylc-examples
+rmdir: invalid option -- 'r'
+Try 'rmdir --help' for more information.
+kara@kara-Capstone:/tmp$ rmdir cylc-examples -r
+rmdir: invalid option -- 'r'
+Try 'rmdir --help' for more information.
+kara@kara-Capstone:/tmp$ rmdir --help
+Usage: rmdir [OPTION]... DIRECTORY...
+Remove the DIRECTORY(ies), if they are empty.
+
+      --ignore-fail-on-non-empty
+                  ignore each failure that is solely because a directory
+                    is non-empty
+  -p, --parents   remove DIRECTORY and its ancestors; e.g., 'rmdir -p a/b/c' is
+                    similar to 'rmdir a/b/c a/b a'
+  -v, --verbose   output a diagnostic for every directory processed
+      --help     display this help and exit
+      --version  output version information and exit
+
+GNU coreutils online help: <http://www.gnu.org/software/coreutils/>
+Full documentation at: <http://www.gnu.org/software/coreutils/rmdir>
+or available locally via: info '(coreutils) rmdir invocation'
+kara@kara-Capstone:/tmp$ rmdir --ignore-fail-on-non-empty cylc-examples
+kara@kara-Capstone:/tmp$ ls
+config-err-omgGKf
+cylc-examples
+gnome-software-JUD78Y
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-colord.service-bYlHFc
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-rtkit-daemon.service-KYzm4O
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-systemd-timesyncd.service-W3xIVo
+unity_support_test.1
+kara@kara-Capstone:/tmp$ sudo rm -R cylc-examples/
+[sudo] password for kara: 
+kara@kara-Capstone:/tmp$ ls
+config-err-omgGKf
+gnome-software-JUD78Y
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-colord.service-bYlHFc
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-rtkit-daemon.service-KYzm4O
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-systemd-timesyncd.service-W3xIVo
+unity_support_test.1
+kara@kara-Capstone:/tmp$ cylc import-examples /tmp
+ + Copying example suites
+ + Registering example suites
+REGISTER examples/7.5.0/delayed-retry: delayed-retry
+REGISTER examples/7.5.0/clock-expire: clock-expire
+REGISTER examples/7.5.0/s-f-trigger: s-f-trigger
+REGISTER examples/7.5.0/AutoRecover/EventHook: AutoRecover/EventHook
+REGISTER examples/7.5.0/AutoRecover/CleanupTask: AutoRecover/CleanupTask
+REGISTER examples/7.5.0/AutoRecover/suicide2: AutoRecover/suicide2
+REGISTER examples/7.5.0/AutoRecover/suicide: AutoRecover/suicide
+REGISTER examples/7.5.0/message-triggers: message-triggers
+REGISTER examples/7.5.0/cycling/HourlyDaily: cycling/HourlyDaily
+REGISTER examples/7.5.0/cycling/Daily: cycling/Daily
+REGISTER examples/7.5.0/cycling/Monthly: cycling/Monthly
+REGISTER examples/7.5.0/cycling/Yearly: cycling/Yearly
+REGISTER examples/7.5.0/inherit/single/two: inherit/single/two
+REGISTER examples/7.5.0/inherit/single/one: inherit/single/one
+REGISTER examples/7.5.0/inherit/multi/bad: inherit/multi/bad
+REGISTER examples/7.5.0/inherit/multi/one: inherit/multi/one
+REGISTER examples/7.5.0/queues: queues
+REGISTER examples/7.5.0/tutorial/oneoff/jobsub: tutorial/oneoff/jobsub
+REGISTER examples/7.5.0/tutorial/oneoff/retry: tutorial/oneoff/retry
+REGISTER examples/7.5.0/tutorial/oneoff/external: tutorial/oneoff/external
+REGISTER examples/7.5.0/tutorial/oneoff/inherit: tutorial/oneoff/inherit
+REGISTER examples/7.5.0/tutorial/oneoff/ftrigger2: tutorial/oneoff/ftrigger2
+REGISTER examples/7.5.0/tutorial/oneoff/minimal: tutorial/oneoff/minimal
+REGISTER examples/7.5.0/tutorial/oneoff/jinja2: tutorial/oneoff/jinja2
+REGISTER examples/7.5.0/tutorial/oneoff/goodbye: tutorial/oneoff/goodbye
+REGISTER examples/7.5.0/tutorial/oneoff/remote: tutorial/oneoff/remote
+REGISTER examples/7.5.0/tutorial/oneoff/ftrigger1: tutorial/oneoff/ftrigger1
+REGISTER examples/7.5.0/tutorial/oneoff/basic: tutorial/oneoff/basic
+REGISTER examples/7.5.0/tutorial/oneoff/suicide: tutorial/oneoff/suicide
+REGISTER examples/7.5.0/tutorial/cycling/two: tutorial/cycling/two
+REGISTER examples/7.5.0/tutorial/cycling/integer: tutorial/cycling/integer
+REGISTER examples/7.5.0/tutorial/cycling/three: tutorial/cycling/three
+REGISTER examples/7.5.0/tutorial/cycling/one: tutorial/cycling/one
+REGISTER examples/7.5.0/tutorial/cycling/four: tutorial/cycling/four
+REGISTER examples/7.5.0/tutorial/cycling/five: tutorial/cycling/five
+REGISTER examples/7.5.0/submit-triggers: submit-triggers
+REGISTER examples/7.5.0/polling: polling
+REGISTER examples/7.5.0/jinja2/defaults: jinja2/defaults
+REGISTER examples/7.5.0/jinja2/dict: jinja2/dict
+REGISTER examples/7.5.0/jinja2/cities: jinja2/cities
+REGISTER examples/7.5.0/jinja2/ensemble: jinja2/ensemble
+REGISTER examples/7.5.0/jinja2/filter: jinja2/filter
+REGISTER examples/7.5.0/family/extra: family/extra
+REGISTER examples/7.5.0/family/triggering: family/triggering
+REGISTER examples/7.5.0/parameters/chunking2: parameters/chunking2
+REGISTER examples/7.5.0/parameters/simple: parameters/simple
+REGISTER examples/7.5.0/parameters/chunking1: parameters/chunking1
+REGISTER examples/7.5.0/parameters/family/all: parameters/family/all
+REGISTER examples/7.5.0/parameters/family/mem: parameters/family/mem
+REGISTER examples/7.5.0/parameters/cycle-chunk: parameters/cycle-chunk
+REGISTER examples/7.5.0/parameters/string: parameters/string
+REGISTER examples/7.5.0/task-states: task-states
+REGISTER examples/7.5.0/satellite/task-polling: satellite/task-polling
+REGISTER examples/7.5.0/satellite/ext-trigger: satellite/ext-trigger
+REGISTER examples/7.5.0/satellite/task-retries: satellite/task-retries
+REGISTER examples/7.5.0/remote/minimal: remote/minimal
+REGISTER examples/7.5.0/future-trigger: future-trigger
+DONE
+kara@kara-Capstone:/tmp$ 
+kara@kara-Capstone:/tmp$ 
+kara@kara-Capstone:/tmp$ 
+kara@kara-Capstone:/tmp$ 
+kara@kara-Capstone:/tmp$ ls
+config-err-omgGKf
+cylc-examples
+gnome-software-JUD78Y
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-colord.service-bYlHFc
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-rtkit-daemon.service-KYzm4O
+systemd-private-6932559a3b324e77bdbbfa66491b59ec-systemd-timesyncd.service-W3xIVo
+unity_support_test.1
+kara@kara-Capstone:/tmp$ cylc 
+
+Cylc ("silk") is a suite engine and metascheduler that specializes in
+cycling weather and climate forecasting suites and related processing
+(but it can also be used for one-off workflows of non-cycling tasks).
+For detailed documentation see the Cylc User Guide (cylc doc --help).
+
+Version 7.5.0
+
+The graphical user interface for cylc is "gcylc" (a.k.a. "cylc gui").
+
+USAGE:
+  % cylc -v,--version                   # print cylc version
+  % cylc version                        # (ditto, by command)
+  % cylc help,--help,-h,?               # print this help page
+
+  % cylc help CATEGORY                  # print help by category
+  % cylc CATEGORY help                  # (ditto)
+  % cylc help [CATEGORY] COMMAND        # print command help
+
+  % cylc COMMAND [options] SUITE [arguments]
+  % cylc COMMAND [options] SUITE TASK [arguments]
+
+Commands can be abbreviated as long as there is no ambiguity in
+the abbreviated command:
+
+  % cylc trigger SUITE TASK             # trigger TASK in SUITE
+  % cylc tri SUITE TASK                 # ditto
+  % cylc t SUITE TASK                   # ditto
+
+  % cylc get                            # Error: ambiguous command
+
+TASK IDENTIFICATION IN CYLC SUITES
+  Tasks are identified by NAME.CYCLE_POINT where POINT is either a
+  date-time or an integer.
+  Date-time cycle points are in an ISO 8601 date-time format, typically
+  CCYYMMDDThhmm followed by a time zone - e.g. 20101225T0600Z.
+  Integer cycle points (including those for one-off suites) are integers
+  - just '1' for one-off suites.
+
+HOW TO DRILL DOWN TO COMMAND USAGE HELP:
+  % cylc help           # list all available categories (this page)
+  % cylc help prep      # list commands in category 'preparation'
+  % cylc help prep edit # command usage help for 'cylc [prep] edit'
+
+Command CATEGORIES:
+  control ....... Suite start up, monitoring, and control.
+  information ... Interrogate suite definitions and running suites.
+  all ........... The complete command set.
+  task .......... The task messaging interface.
+  license|GPL ... Software licensing information (GPL v3.0).
+  admin ......... Cylc installation, testing, and example suites.
+  preparation ... Suite editing, validation, visualization, etc.
+  hook .......... Suite and task event hook scripts.
+  discovery ..... Detect running suites.
+  utility ....... Cycle arithmetic and templating, etc.
+kara@kara-Capstone:/tmp$ cd cylc-examples/
+kara@kara-Capstone:/tmp/cylc-examples$ ls
+7.5.0
+kara@kara-Capstone:/tmp/cylc-examples$ cd 7.5.0/
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0$ ls
+AutoRecover   delayed-retry   inherit           parameters  remote       submit-triggers
+clock-expire  family          jinja2            polling     satellite    task-states
+cycling       future-trigger  message-triggers  queues      s-f-trigger  tutorial
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0$ cd tutorial/
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ ls
+cycling  oneoff  README
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ cylc run /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/ --debug
+            ._.                                                       
+            | |                 The Cylc Suite Engine [7.5.0]         
+._____._. ._| |_____.           Copyright (C) 2008-2017 NIWA          
+| .___| | | | | .___|  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+| !___| !_! | | !___.  This program comes with ABSOLUTELY NO WARRANTY;
+!_____!___. |_!_____!  see `cylc warranty`.  It is free software, you 
+      .___! |           are welcome to redistribute it under certain  
+      !_____!                conditions; see `cylc conditions`.       
+2017-10-26T18:41:13-07 INFO - Waiting for the command process pool to empty for shutdown
+2017-10-26T18:41:13-07 INFO - Suite shutting down - AUTOMATIC
+2017-10-26T18:41:13-07 INFO - DONE
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ cylc scan
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ cylc run /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/ --no-detach
+            ._.                                                       
+            | |                 The Cylc Suite Engine [7.5.0]         
+._____._. ._| |_____.           Copyright (C) 2008-2017 NIWA          
+| .___| | | | | .___|  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+| !___| !_! | | !___.  This program comes with ABSOLUTELY NO WARRANTY;
+!_____!___. |_!_____!  see `cylc warranty`.  It is free software, you 
+      .___! |           are welcome to redistribute it under certain  
+      !_____!                conditions; see `cylc conditions`.       
+2017-10-26T18:42:03-07 INFO - Waiting for the command process pool to empty for shutdown
+2017-10-26T18:42:03-07 INFO - Suite shutting down - AUTOMATIC
+2017-10-26T18:42:03-07 INFO - DONE
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ cylc scan
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ cylc run /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/
+            ._.                                                       
+            | |                 The Cylc Suite Engine [7.5.0]         
+._____._. ._| |_____.           Copyright (C) 2008-2017 NIWA          
+| .___| | | | | .___|  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+| !___| !_! | | !___.  This program comes with ABSOLUTELY NO WARRANTY;
+!_____!___. |_!_____!  see `cylc warranty`.  It is free software, you 
+      .___! |           are welcome to redistribute it under certain  
+      !_____!                conditions; see `cylc conditions`.       
+
+*** listening on kara-Capstone:4004 ***
+
+To view suite daemon contact information:
+ $ cylc get-suite-contact /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/
+
+Other ways to see if the suite is still running:
+ $ cylc scan -n '\b/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/\b' kara-Capstone
+ $ cylc ping -v --host=kara-Capstone /tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/
+ $ ssh kara-Capstone "pgrep -a -P 1 -fu $USER 'cylc-r.* \b/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/\b'"
+
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ cylc scan
+/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic/ kara@localhost:4004
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ cylc scan
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ cd ..
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0$ cd ..
+kara@kara-Capstone:/tmp/cylc-examples$ cd
+kara@kara-Capstone:~$ ls
+command  cylc-run  Desktop  Documents  Downloads  examples.desktop  Music  Pictures  Public  Templates  Videos
+kara@kara-Capstone:~$ cd Desktop/
+kara@kara-Capstone:~/Desktop$ ls
+testproject
+kara@kara-Capstone:~/Desktop$ cd testproject/
+kara@kara-Capstone:~/Desktop/testproject$ ls
+app.py  static  templates
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:02:40] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:02:40] "GET /static/style.css HTTP/1.1" 404 -
+127.0.0.1 - - [27/Oct/2017 09:02:40] "GET /static/script.js HTTP/1.1" 200 -
+becb6031dc6a4e9f94746b30738b83ea USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:02:40] "GET /socket.io/?EIO=3&transport=polling&t=1509120160463-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:02:40] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [27/Oct/2017 09:03:05] "POST /socket.io/?EIO=3&transport=polling&t=1509120185629-2&sid=becb6031dc6a4e9f94746b30738b83ea HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:03:05] "GET /socket.io/?EIO=3&transport=polling&t=1509120160630-1&sid=becb6031dc6a4e9f94746b30738b83ea HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:03:12] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:03:12] "GET /static/style.css HTTP/1.1" 404 -
+fdc47d0052cf48a3a5d7c247c09ed5d6 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:03:13] "GET /socket.io/?EIO=3&transport=polling&t=1509120193101-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:03:38] "POST /socket.io/?EIO=3&transport=polling&t=1509120218227-2&sid=fdc47d0052cf48a3a5d7c247c09ed5d6 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:03:38] "GET /socket.io/?EIO=3&transport=polling&t=1509120193226-1&sid=fdc47d0052cf48a3a5d7c247c09ed5d6 HTTP/1.1" 200 -
+^Z
+[1]+  Stopped                 python app.py
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+Traceback (most recent call last):
+  File "app.py", line 51, in <module>
+    debug=True
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 481, in run
+    use_reloader=use_reloader, **kwargs)
+  File "/home/kara/.local/lib/python2.7/site-packages/flask/app.py", line 841, in run
+    run_simple(host, port, self, **options)
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 720, in run_simple
+    s.bind((hostname, port))
+  File "/usr/lib/python2.7/socket.py", line 228, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+kara@kara-Capstone:~/Desktop/testproject$ lsof -i :5000
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+python  32221 kara    3u  IPv4 150821      0t0  TCP kara-Capstone:5000 (LISTEN)
+python  32226 kara    3u  IPv4 150821      0t0  TCP kara-Capstone:5000 (LISTEN)
+python  32226 kara    4u  IPv4 151592      0t0  TCP kara-Capstone:5000->localhost:40048 (CLOSE_WAIT)
+python  32226 kara    5u  IPv4 151592      0t0  TCP kara-Capstone:5000->localhost:40048 (CLOSE_WAIT)
+python  32226 kara    6u  IPv4 151592      0t0  TCP kara-Capstone:5000->localhost:40048 (CLOSE_WAIT)
+python  32226 kara    7u  IPv4 151875      0t0  TCP kara-Capstone:5000->localhost:40068 (CLOSE_WAIT)
+python  32226 kara    8u  IPv4 151875      0t0  TCP kara-Capstone:5000->localhost:40068 (CLOSE_WAIT)
+python  32226 kara    9u  IPv4 150821      0t0  TCP kara-Capstone:5000 (LISTEN)
+python  32226 kara   10u  IPv4 151875      0t0  TCP kara-Capstone:5000->localhost:40068 (CLOSE_WAIT)
+kara@kara-Capstone:~/Desktop/testproject$ lsof -i :3000
+kara@kara-Capstone:~/Desktop/testproject$ kill 32221
+kara@kara-Capstone:~/Desktop/testproject$ kill 32226
+kara@kara-Capstone:~/Desktop/testproject$ lsof -i :3000
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+Traceback (most recent call last):
+  File "app.py", line 51, in <module>
+    debug=True
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 481, in run
+    use_reloader=use_reloader, **kwargs)
+  File "/home/kara/.local/lib/python2.7/site-packages/flask/app.py", line 841, in run
+    run_simple(host, port, self, **options)
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 720, in run_simple
+    s.bind((hostname, port))
+  File "/usr/lib/python2.7/socket.py", line 228, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+kara@kara-Capstone:~/Desktop/testproject$ lsof -i :5000
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+python  32221 kara    3u  IPv4 150821      0t0  TCP kara-Capstone:5000 (LISTEN)
+python  32226 kara    3u  IPv4 150821      0t0  TCP kara-Capstone:5000 (LISTEN)
+python  32226 kara    4u  IPv4 151592      0t0  TCP kara-Capstone:5000->localhost:40048 (CLOSE_WAIT)
+python  32226 kara    5u  IPv4 151592      0t0  TCP kara-Capstone:5000->localhost:40048 (CLOSE_WAIT)
+python  32226 kara    6u  IPv4 151592      0t0  TCP kara-Capstone:5000->localhost:40048 (CLOSE_WAIT)
+python  32226 kara    7u  IPv4 151875      0t0  TCP kara-Capstone:5000->localhost:40068 (CLOSE_WAIT)
+python  32226 kara    8u  IPv4 151875      0t0  TCP kara-Capstone:5000->localhost:40068 (CLOSE_WAIT)
+python  32226 kara    9u  IPv4 150821      0t0  TCP kara-Capstone:5000 (LISTEN)
+python  32226 kara   10u  IPv4 151875      0t0  TCP kara-Capstone:5000->localhost:40068 (CLOSE_WAIT)
+kara@kara-Capstone:~/Desktop/testproject$ sudo kill -9 32221
+[sudo] password for kara: 
+[1]+  Killed                  python app.py
+kara@kara-Capstone:~/Desktop/testproject$ sudo kill -9 32226
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:08:45] "GET / HTTP/1.1" 200 -
+ff3ff3d9f95e4e5196d208a9f3fc9521 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:08:45] "GET /socket.io/?EIO=3&transport=polling&t=1509120525704-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:08:59] "GET / HTTP/1.1" 200 -
+c8afaf984adc4a4cb94a34d1d0156ebc USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:08:59] "GET /socket.io/?EIO=3&transport=polling&t=1509120539725-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:09:24] "GET / HTTP/1.1" 200 -
+93e1edd109184c2aa497bb7fd4c27a55 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:09:24] "GET /socket.io/?EIO=3&transport=polling&t=1509120564598-0 HTTP/1.1" 200 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ Exception in thread Thread-7 (most likely raised during interpreter shutdown):Exception in thread Thread-4 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_errorException in thread Thread-10 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+
+
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_threadTraceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+
+^C
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:13:44] "GET / HTTP/1.1" 200 -
+debff6e82ae342fdb8626ca987945809 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:13:44] "GET /socket.io/?EIO=3&transport=polling&t=1509120824577-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:13:58] "GET / HTTP/1.1" 200 -
+1660a47f20574a6fa79b81269f30766c USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:13:58] "GET /socket.io/?EIO=3&transport=polling&t=1509120838717-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:14:23] "POST /socket.io/?EIO=3&transport=polling&t=1509120863792-2&sid=1660a47f20574a6fa79b81269f30766c HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:14:23] "GET /socket.io/?EIO=3&transport=polling&t=1509120838795-1&sid=1660a47f20574a6fa79b81269f30766c HTTP/1.1" 200 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ Exception in thread Thread-1 (most likely raised during interpreter shutdown):Exception in thread Thread-9 (most likely raised during interpreter shutdown):Exception in thread Thread-4 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 702, in inner
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 539, in serve_forever
+  File "/usr/lib/python2.7/SocketServer.py", line 236, in serve_forever
+  File "/usr/lib/python2.7/threading.py", line 585, in set
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+  File "/usr/lib/python2.7/threading.py", line 407, in notifyAll
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+<type 'exceptions.TypeError'>: 'NoneType' object is not callable
+
+Traceback (most recent call last):
+
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+^C
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:17:14] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:17:14] "GET /static/script.js HTTP/1.1" 200 -
+795f88bb35d14d97993bbd2dd8162da3 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:17:15] "GET /socket.io/?EIO=3&transport=polling&t=1509121035196-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:17:24] "GET / HTTP/1.1" 200 -
+548de3fd9b234030a2c31ec28edb4933 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:17:25] "GET /socket.io/?EIO=3&transport=polling&t=1509121045068-0 HTTP/1.1" 200 -
+^CException in thread Thread-5 (most likely raised during interpreter shutdown):Exception in thread Thread-8 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:19:38] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:19:39] "GET /static/script.js HTTP/1.1" 304 -
+3e4626b510a24ce090ccc63886503545 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:19:39] "GET /socket.io/?EIO=3&transport=polling&t=1509121179371-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:20:04] "POST /socket.io/?EIO=3&transport=polling&t=1509121204494-2&sid=3e4626b510a24ce090ccc63886503545 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:20:04] "GET /socket.io/?EIO=3&transport=polling&t=1509121179494-1&sid=3e4626b510a24ce090ccc63886503545 HTTP/1.1" 200 -
+^CException in thread Thread-7 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:22:31] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:22:31] "GET /static/script.js HTTP/1.1" 304 -
+fb283c38c86e482da9620945784959f1 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:22:31] "GET /socket.io/?EIO=3&transport=polling&t=1509121351542-0 HTTP/1.1" 200 -
+^CException in thread Thread-5 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:33:34] "GET / HTTP/1.1" 200 -
+3043e9a5f2c94e3eab55a5c864c58236 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:33:34] "GET /socket.io/?EIO=3&transport=polling&t=1509122014655-0 HTTP/1.1" 200 -
+^CException in thread Thread-4 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:36:37] "GET / HTTP/1.1" 404 -
+127.0.0.1 - - [27/Oct/2017 09:36:40] "GET /test HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:36:40] "GET /testproject/static/script.js HTTP/1.1" 404 -
+127.0.0.1 - - [27/Oct/2017 09:36:40] "GET /testproject/static/script.js HTTP/1.1" 404 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:39:28] "GET / HTTP/1.1" 404 -
+127.0.0.1 - - [27/Oct/2017 09:39:32] "GET /test HTTP/1.1" 200 -
+57cae7a9fcc444698df4f39f708b4cdd USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:39:33] "GET /socket.io/?EIO=3&transport=polling&t=1509122373006-0 HTTP/1.1" 200 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ Exception in thread Thread-5 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+^C
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:46:27] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:46:27] "GET /~/Desktop/testproject/static/script.js HTTP/1.1" 404 -
+127.0.0.1 - - [27/Oct/2017 09:46:27] "GET /~/Desktop/testproject/static/script.js HTTP/1.1" 404 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:48:24] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:48:24] "GET /~/Desktop/testproject/static/script.js HTTP/1.1" 404 -
+127.0.0.1 - - [27/Oct/2017 09:48:24] "GET /~/Desktop/testproject/static/script.js HTTP/1.1" 404 -
+^CException in thread Thread-1 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 702, in inner
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 539, in serve_forever
+  File "/usr/lib/python2.7/SocketServer.py", line 230, in serve_forever
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'select'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:50:23] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:50:23] "GET /~/Desktop/testproject/static/script.js HTTP/1.1" 404 -
+127.0.0.1 - - [27/Oct/2017 09:50:23] "GET /~/Desktop/testproject/static/script.js HTTP/1.1" 404 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:52:16] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:52:16] "GET /~/Desktop/testproject/static/script.js HTTP/1.1" 404 -
+127.0.0.1 - - [27/Oct/2017 09:52:16] "GET /~/Desktop/testproject/static/script.js HTTP/1.1" 404 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:53:25] "GET / HTTP/1.1" 200 -
+514918c5f79446bab51835e139c23972 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:53:25] "GET /socket.io/?EIO=3&transport=polling&t=1509123205282-0 HTTP/1.1" 200 -
+^CException in thread Thread-4 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+Exception in thread Thread-1 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 702, in inner
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 539, in serve_forever
+  File "/usr/lib/python2.7/SocketServer.py", line 230, in serve_forever
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'select'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:54:21] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:54:21] "GET /static/script.js HTTP/1.1" 200 -
+8675601bdb004ceb904288851ab986c2 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:54:21] "GET /socket.io/?EIO=3&transport=polling&t=1509123261330-0 HTTP/1.1" 200 -
+^CException in thread Thread-5 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 09:58:31] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 09:58:31] "GET /static/script.js HTTP/1.1" 200 -
+655c47be569e4aa185985a24e07b339b USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 09:58:32] "GET /socket.io/?EIO=3&transport=polling&t=1509123512079-0 HTTP/1.1" 200 -
+^CException in thread Thread-5 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 10:02:25] "GET / HTTP/1.1" 200 -
+bbda29ebb33349648e5f1bc2fc49f847 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:02:26] "GET /socket.io/?EIO=3&transport=polling&t=1509123746139-0 HTTP/1.1" 200 -
+^CException in thread Thread-4 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 10:11:06] "GET / HTTP/1.1" 200 -
+7c467988328e4af29afcb8671a2a8bae USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:11:06] "GET /socket.io/?EIO=3&transport=polling&t=1509124266616-104 HTTP/1.1" 200 -
+70bfc37bb8044f5aad8475dd284569bf USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:11:06] "GET /socket.io/?EIO=3&transport=polling&t=1509124266770-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:11:31] "POST /socket.io/?EIO=3&transport=polling&t=1509124291878-2&sid=70bfc37bb8044f5aad8475dd284569bf HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:11:31] "GET /socket.io/?EIO=3&transport=polling&t=1509124266878-1&sid=70bfc37bb8044f5aad8475dd284569bf HTTP/1.1" 200 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ Exception in thread Thread-8 (most likely raised during interpreter shutdown):Exception in thread Thread-4 (most likely raised during interpreter shutdown):Exception in thread Thread-1 (most likely raised during interpreter shutdown):
+
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_innerTraceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 702, in inner
+
+
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_threadTraceback (most recent call last):  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 539, in serve_forever
+
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+
+
+  File "/usr/lib/python2.7/SocketServer.py", line 236, in serve_forever<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/threading.py", line 585, in set
+
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/usr/lib/python2.7/threading.py", line 407, in notifyAll
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.TypeError'>: 'NoneType' object is not callable
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+
+^C
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+0e4ecc183523464b80cecac68e6aca80 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:14:36] "GET /socket.io/?EIO=3&transport=polling&t=1509124476740-38 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:14:41] "GET / HTTP/1.1" 200 -
+c927437c22fc4cfcb73d236cfa9880d9 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:14:41] "GET /socket.io/?EIO=3&transport=polling&t=1509124481542-0 HTTP/1.1" 200 -
+^CException in thread Thread-3 (most likely raised during interpreter shutdown):Exception in thread Thread-6 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+Traceback (most recent call last):
+
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 10:21:49] "GET / HTTP/1.1" 200 -
+9787422f769f40238edeab8a7bfa1a67 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:21:49] "GET /socket.io/?EIO=3&transport=polling&t=1509124909650-0 HTTP/1.1" 200 -
+^CException in thread Thread-4 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 10:27:37] "GET / HTTP/1.1" 200 -
+adc9e6a131dd414a9eb2287417b42eb9 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:27:37] "GET /socket.io/?EIO=3&transport=polling&t=1509125257234-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:27:46] "GET / HTTP/1.1" 200 -
+16b78734fba6482bb6c2ceb9b4b1796b USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:27:46] "GET /socket.io/?EIO=3&transport=polling&t=1509125266939-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:27:52] "GET / HTTP/1.1" 200 -
+69ddae85c8df49a287fdd25e2968135c USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:27:52] "GET /socket.io/?EIO=3&transport=polling&t=1509125272308-0 HTTP/1.1" 200 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ Exception in thread Thread-10 (most likely raised during interpreter shutdown):Exception in thread Thread-4 (most likely raised during interpreter shutdown):Exception in thread Thread-7 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+Traceback (most recent call last):
+
+
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_innerTraceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+
+  File "/usr/lib/python2.7/threading.py", line 754, in run  File "/usr/lib/python2.7/threading.py", line 754, in run
+
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+^C
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 10:31:09] "GET / HTTP/1.1" 200 -
+43dfa20c166949eb91c1a2a1099edd05 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:31:09] "GET /socket.io/?EIO=3&transport=polling&t=1509125469162-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:31:18] "GET / HTTP/1.1" 200 -
+10ffb26359204ffc87fd9857c7f90dfd USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:31:18] "GET /socket.io/?EIO=3&transport=polling&t=1509125478845-0 HTTP/1.1" 200 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ Exception in thread Thread-4 (most likely raised during interpreter shutdown):Exception in thread Thread-7 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+^C
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+e1969f606e754d61b26e4c5b3a8d9441 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:36:09] "GET /socket.io/?EIO=3&transport=polling&t=1509125769436-50 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:36:12] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:36:12] "GET /static/script.js HTTP/1.1" 200 -
+96e95221bb4e4b2fb7b323cbb8ba1b98 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:36:12] "GET /socket.io/?EIO=3&transport=polling&t=1509125772759-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:36:20] "GET / HTTP/1.1" 200 -
+c1b82de53d6c489c824682370caebe1a USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:36:20] "GET /socket.io/?EIO=3&transport=polling&t=1509125780289-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:36:45] "POST /socket.io/?EIO=3&transport=polling&t=1509125805350-2&sid=c1b82de53d6c489c824682370caebe1a HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:36:45] "GET /socket.io/?EIO=3&transport=polling&t=1509125780350-1&sid=c1b82de53d6c489c824682370caebe1a HTTP/1.1" 200 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ Exception in thread Thread-3 (most likely raised during interpreter shutdown):Exception in thread Thread-12 (most likely raised during interpreter shutdown):Exception in thread Thread-7 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+Traceback (most recent call last):
+
+  File "/usr/lib/python2.7/threading.py", line 754, in run  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread  File "/usr/lib/python2.7/threading.py", line 754, in run
+
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+
+
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+^C
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 10:37:37] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:37:38] "GET /static/script.js HTTP/1.1" 304 -
+f2f90f64bdda485c844c2decc52e8af3 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:37:38] "GET /socket.io/?EIO=3&transport=polling&t=1509125858064-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:37:46] "GET / HTTP/1.1" 200 -
+eaf10f89f8cc4d46a4d1a6a2310dd480 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:37:46] "GET /socket.io/?EIO=3&transport=polling&t=1509125866946-0 HTTP/1.1" 200 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ Exception in thread Thread-5 (most likely raised during interpreter shutdown):Exception in thread Thread-8 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+^C
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 10:40:28] "GET / HTTP/1.1" 200 -
+3dce00c6a03b4e3c9642a848df7185f3 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:40:28] "GET /socket.io/?EIO=3&transport=polling&t=1509126028575-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:40:35] "GET / HTTP/1.1" 200 -
+77c824e9331348968790e5426c34caa3 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:40:35] "GET /socket.io/?EIO=3&transport=polling&t=1509126035755-0 HTTP/1.1" 200 -
+^CException in thread Thread-7 (most likely raised during interpreter shutdown):Exception in thread Thread-4 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 10:41:51] "GET / HTTP/1.1" 200 -
+46cfb285e939483baea8da2daf52233e USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:41:51] "GET /socket.io/?EIO=3&transport=polling&t=1509126111740-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:41:58] "GET / HTTP/1.1" 200 -
+05db4a080a6f4a9c9bd0067697e2d3e0 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:41:58] "GET /socket.io/?EIO=3&transport=polling&t=1509126118861-0 HTTP/1.1" 200 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ Exception in thread Thread-4 (most likely raised during interpreter shutdown):Exception in thread Thread-7 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+^C
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 10:45:37] "GET / HTTP/1.1" 200 -
+e2a39efdcf884839ace7b3badc349552 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:45:37] "GET /socket.io/?EIO=3&transport=polling&t=1509126337221-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:45:46] "GET / HTTP/1.1" 200 -
+59f52a82e38c4537a3d3e754ddbd60a4 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:45:46] "GET /socket.io/?EIO=3&transport=polling&t=1509126346448-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:45:54] "GET / HTTP/1.1" 200 -
+47f9d23c638c48e0b5383fdd26eb3417 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:45:54] "GET /socket.io/?EIO=3&transport=polling&t=1509126354264-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:46:01] "GET / HTTP/1.1" 200 -
+06d5cb5f2f034d69a87404a70b832397 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:46:01] "GET /socket.io/?EIO=3&transport=polling&t=1509126361333-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:46:26] "POST /socket.io/?EIO=3&transport=polling&t=1509126386395-2&sid=06d5cb5f2f034d69a87404a70b832397 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:46:26] "GET /socket.io/?EIO=3&transport=polling&t=1509126361394-1&sid=06d5cb5f2f034d69a87404a70b832397 HTTP/1.1" 200 -
+^CException in thread Thread-15 (most likely raised during interpreter shutdown):Exception in thread Thread-7 (most likely raised during interpreter shutdown):Exception in thread Thread-4 (most likely raised during interpreter shutdown):Exception in thread Thread-10 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_threadTraceback (most recent call last):
+
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+Traceback (most recent call last):  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 10:56:57] "GET / HTTP/1.1" 200 -
+095427a543fe4cf6ab16fc3f13bd0e32 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 10:56:57] "GET /socket.io/?EIO=3&transport=polling&t=1509127017992-0 HTTP/1.1" 200 -
+ss HOST NAME: 
+127.0.0.1 - - [27/Oct/2017 10:57:11] "POST /socket.io/?EIO=3&transport=polling&t=1509127031753-2&sid=095427a543fe4cf6ab16fc3f13bd0e32 HTTP/1.1" 200 -
+ss HOST NAME: 
+127.0.0.1 - - [27/Oct/2017 10:57:14] "POST /socket.io/?EIO=3&transport=polling&t=1509127034751-3&sid=095427a543fe4cf6ab16fc3f13bd0e32 HTTP/1.1" 200 -
+ss HOST NAME: 
+127.0.0.1 - - [27/Oct/2017 10:57:17] "POST /socket.io/?EIO=3&transport=polling&t=1509127037751-4&sid=095427a543fe4cf6ab16fc3f13bd0e32 HTTP/1.1" 200 -
+ss HOST NAME: 
+127.0.0.1 - - [27/Oct/2017 10:57:20] "POST /socket.io/?EIO=3&transport=polling&t=1509127040752-5&sid=095427a543fe4cf6ab16fc3f13bd0e32 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:57:23] "POST /socket.io/?EIO=3&transport=polling&t=1509127043086-6&sid=095427a543fe4cf6ab16fc3f13bd0e32 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 10:57:23] "GET /socket.io/?EIO=3&transport=polling&t=1509127018086-1&sid=095427a543fe4cf6ab16fc3f13bd0e32 HTTP/1.1" 200 -
+ss HOST NAME: 
+127.0.0.1 - - [27/Oct/2017 10:57:23] "POST /socket.io/?EIO=3&transport=polling&t=1509127043752-8&sid=095427a543fe4cf6ab16fc3f13bd0e32 HTTP/1.1" 200 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 11:21:32] "GET / HTTP/1.1" 200 -
+73424d48f8a44c6397014f9e82c6db67 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 11:21:33] "GET /socket.io/?EIO=3&transport=polling&t=1509128493117-0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 11:21:33] "GET /favicon.ico HTTP/1.1" 404 -
+kara IS HOST NAME 
+12345 IS PORT NUMBER 
+testsuite IS SUITE NAME 
+message handler error
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/engineio/server.py", line 398, in _trigger_event
+    return self.handlers[event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 513, in _handle_eio_message
+    self._handle_event(sid, pkt.namespace, pkt.id, pkt.data)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 449, in _handle_event
+    self._handle_event_internal(self, sid, data, namespace, id)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 452, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 481, in _trigger_event
+    return self.handlers[namespace][event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 236, in _handler
+    *args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 619, in _handle_event
+    ret = handler(*args)
+  File "app.py", line 38, in message
+    with open(passphraseFile,'r') as f:
+IOError: [Errno 2] No such file or directory: '$HOME/cylc-run/examples/tutorial/oneoff/basic/.service/passphrase'
+127.0.0.1 - - [27/Oct/2017 11:21:54] "POST /socket.io/?EIO=3&transport=polling&t=1509128514320-2&sid=73424d48f8a44c6397014f9e82c6db67 HTTP/1.1" 200 -
+kara IS HOST NAME 
+12345 IS PORT NUMBER 
+testsuite IS SUITE NAME 
+message handler error
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/engineio/server.py", line 398, in _trigger_event
+    return self.handlers[event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 513, in _handle_eio_message
+    self._handle_event(sid, pkt.namespace, pkt.id, pkt.data)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 449, in _handle_event
+    self._handle_event_internal(self, sid, data, namespace, id)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 452, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 481, in _trigger_event
+    return self.handlers[namespace][event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 236, in _handler
+    *args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 619, in _handle_event
+    ret = handler(*args)
+  File "app.py", line 38, in message
+    with open(passphraseFile,'r') as f:
+IOError: [Errno 2] No such file or directory: '$HOME/cylc-run/examples/tutorial/oneoff/basic/.service/passphrase'
+127.0.0.1 - - [27/Oct/2017 11:21:57] "POST /socket.io/?EIO=3&transport=polling&t=1509128517319-3&sid=73424d48f8a44c6397014f9e82c6db67 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 11:21:58] "POST /socket.io/?EIO=3&transport=polling&t=1509128518510-4&sid=73424d48f8a44c6397014f9e82c6db67 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 11:21:58] "GET /socket.io/?EIO=3&transport=polling&t=1509128493511-1&sid=73424d48f8a44c6397014f9e82c6db67 HTTP/1.1" 200 -
+kara IS HOST NAME 
+12345 IS PORT NUMBER 
+testsuite IS SUITE NAME 
+message handler error
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/engineio/server.py", line 398, in _trigger_event
+    return self.handlers[event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 513, in _handle_eio_message
+    self._handle_event(sid, pkt.namespace, pkt.id, pkt.data)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 449, in _handle_event
+    self._handle_event_internal(self, sid, data, namespace, id)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 452, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 481, in _trigger_event
+    return self.handlers[namespace][event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 236, in _handler
+    *args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 619, in _handle_event
+    ret = handler(*args)
+  File "app.py", line 38, in message
+    with open(passphraseFile,'r') as f:
+IOError: [Errno 2] No such file or directory: '$HOME/cylc-run/examples/tutorial/oneoff/basic/.service/passphrase'
+127.0.0.1 - - [27/Oct/2017 11:22:00] "POST /socket.io/?EIO=3&transport=polling&t=1509128520318-6&sid=73424d48f8a44c6397014f9e82c6db67 HTTP/1.1" 200 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ Exception in thread Thread-9 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+^C
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 11:22:32] "GET / HTTP/1.1" 200 -
+89265d3c0cc34822a6d60674dea8ff8b USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 11:22:32] "GET /socket.io/?EIO=3&transport=polling&t=1509128552348-0 HTTP/1.1" 200 -
+kara IS HOST NAME 
+1234 IS PORT NUMBER 
+test IS SUITE NAME 
+message handler error
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/engineio/server.py", line 398, in _trigger_event
+    return self.handlers[event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 513, in _handle_eio_message
+    self._handle_event(sid, pkt.namespace, pkt.id, pkt.data)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 449, in _handle_event
+    self._handle_event_internal(self, sid, data, namespace, id)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 452, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 481, in _trigger_event
+    return self.handlers[namespace][event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 236, in _handler
+    *args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 619, in _handle_event
+    ret = handler(*args)
+  File "app.py", line 38, in message
+    with open(passphraseFile,'r') as f:
+IOError: [Errno 2] No such file or directory: 'home/kara/cylc-run/examples/tutorial/oneoff/basic/.service/passphrase'
+127.0.0.1 - - [27/Oct/2017 11:22:45] "POST /socket.io/?EIO=3&transport=polling&t=1509128565196-2&sid=89265d3c0cc34822a6d60674dea8ff8b HTTP/1.1" 200 -
+kara IS HOST NAME 
+1234 IS PORT NUMBER 
+test IS SUITE NAME 
+message handler error
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/engineio/server.py", line 398, in _trigger_event
+    return self.handlers[event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 513, in _handle_eio_message
+    self._handle_event(sid, pkt.namespace, pkt.id, pkt.data)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 449, in _handle_event
+    self._handle_event_internal(self, sid, data, namespace, id)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 452, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 481, in _trigger_event
+    return self.handlers[namespace][event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 236, in _handler
+    *args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 619, in _handle_event
+    ret = handler(*args)
+  File "app.py", line 38, in message
+    with open(passphraseFile,'r') as f:
+IOError: [Errno 2] No such file or directory: 'home/kara/cylc-run/examples/tutorial/oneoff/basic/.service/passphrase'
+127.0.0.1 - - [27/Oct/2017 11:22:48] "POST /socket.io/?EIO=3&transport=polling&t=1509128568194-3&sid=89265d3c0cc34822a6d60674dea8ff8b HTTP/1.1" 200 -
+kara IS HOST NAME 
+1234 IS PORT NUMBER 
+test IS SUITE NAME 
+message handler error
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/engineio/server.py", line 398, in _trigger_event
+    return self.handlers[event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 513, in _handle_eio_message
+    self._handle_event(sid, pkt.namespace, pkt.id, pkt.data)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 449, in _handle_event
+    self._handle_event_internal(self, sid, data, namespace, id)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 452, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 481, in _trigger_event
+    return self.handlers[namespace][event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 236, in _handler
+    *args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 619, in _handle_event
+    ret = handler(*args)
+  File "app.py", line 38, in message
+    with open(passphraseFile,'r') as f:
+IOError: [Errno 2] No such file or directory: 'home/kara/cylc-run/examples/tutorial/oneoff/basic/.service/passphrase'
+127.0.0.1 - - [27/Oct/2017 11:22:51] "POST /socket.io/?EIO=3&transport=polling&t=1509128571194-4&sid=89265d3c0cc34822a6d60674dea8ff8b HTTP/1.1" 200 -
+^CException in thread Thread-4 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 11:23:33] "GET / HTTP/1.1" 200 -
+3c124083f2464f36bce52ee67ddaf084 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 11:23:33] "GET /socket.io/?EIO=3&transport=polling&t=1509128613865-0 HTTP/1.1" 200 -
+kara IS HOST NAME 
+1234 IS PORT NUMBER 
+test IS SUITE NAME 
+message handler error
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/engineio/server.py", line 398, in _trigger_event
+    return self.handlers[event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 513, in _handle_eio_message
+    self._handle_event(sid, pkt.namespace, pkt.id, pkt.data)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 449, in _handle_event
+    self._handle_event_internal(self, sid, data, namespace, id)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 452, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 481, in _trigger_event
+    return self.handlers[namespace][event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 236, in _handler
+    *args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 619, in _handle_event
+    ret = handler(*args)
+  File "app.py", line 38, in message
+    with open(passphraseFile,'r') as f:
+IOError: [Errno 2] No such file or directory: 'home/kara/cylc-run/examples/7.5.0/tutorial/oneoff/basic/.service/passphrase'
+127.0.0.1 - - [27/Oct/2017 11:23:47] "POST /socket.io/?EIO=3&transport=polling&t=1509128627495-2&sid=3c124083f2464f36bce52ee67ddaf084 HTTP/1.1" 200 -
+kara IS HOST NAME 
+1234 IS PORT NUMBER 
+test IS SUITE NAME 
+message handler error
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/engineio/server.py", line 398, in _trigger_event
+    return self.handlers[event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 513, in _handle_eio_message
+    self._handle_event(sid, pkt.namespace, pkt.id, pkt.data)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 449, in _handle_event
+    self._handle_event_internal(self, sid, data, namespace, id)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 452, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 481, in _trigger_event
+    return self.handlers[namespace][event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 236, in _handler
+    *args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 619, in _handle_event
+    ret = handler(*args)
+  File "app.py", line 38, in message
+    with open(passphraseFile,'r') as f:
+IOError: [Errno 2] No such file or directory: 'home/kara/cylc-run/examples/7.5.0/tutorial/oneoff/basic/.service/passphrase'
+127.0.0.1 - - [27/Oct/2017 11:23:50] "POST /socket.io/?EIO=3&transport=polling&t=1509128630495-3&sid=3c124083f2464f36bce52ee67ddaf084 HTTP/1.1" 200 -
+kara IS HOST NAME 
+1234 IS PORT NUMBER 
+test IS SUITE NAME 
+message handler error
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/engineio/server.py", line 398, in _trigger_event
+    return self.handlers[event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 513, in _handle_eio_message
+    self._handle_event(sid, pkt.namespace, pkt.id, pkt.data)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 449, in _handle_event
+    self._handle_event_internal(self, sid, data, namespace, id)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 452, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 481, in _trigger_event
+    return self.handlers[namespace][event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 236, in _handler
+    *args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 619, in _handle_event
+    ret = handler(*args)
+  File "app.py", line 38, in message
+    with open(passphraseFile,'r') as f:
+IOError: [Errno 2] No such file or directory: 'home/kara/cylc-run/examples/7.5.0/tutorial/oneoff/basic/.service/passphrase'
+127.0.0.1 - - [27/Oct/2017 11:23:53] "POST /socket.io/?EIO=3&transport=polling&t=1509128633494-4&sid=3c124083f2464f36bce52ee67ddaf084 HTTP/1.1" 200 -
+^Ckara@kara-Capstone:~/Desktop/testproject$ Exception in thread Thread-4 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+^C
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 11:26:10] "GET / HTTP/1.1" 200 -
+9f3b03b13dfc4373a9862a67518e5ffb USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 11:26:10] "GET /socket.io/?EIO=3&transport=polling&t=1509128770355-0 HTTP/1.1" 200 -
+l IS HOST NAME 
+b IS PORT NUMBER 
+n IS SUITE NAME 
+('PASSPHRASE: ', 'XGZDFTIWhibMwVzr2SuQ')
+127.0.0.1 - - [27/Oct/2017 11:26:22] "POST /socket.io/?EIO=3&transport=polling&t=1509128782128-2&sid=9f3b03b13dfc4373a9862a67518e5ffb HTTP/1.1" 200 -
+l IS HOST NAME 
+b IS PORT NUMBER 
+n IS SUITE NAME 
+('PASSPHRASE: ', 'XGZDFTIWhibMwVzr2SuQ')
+127.0.0.1 - - [27/Oct/2017 11:26:25] "POST /socket.io/?EIO=3&transport=polling&t=1509128785129-3&sid=9f3b03b13dfc4373a9862a67518e5ffb HTTP/1.1" 200 -
+^Z
+[1]+  Stopped                 python app.py
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+Traceback (most recent call last):
+  File "app.py", line 53, in <module>
+    debug=True
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 481, in run
+    use_reloader=use_reloader, **kwargs)
+  File "/home/kara/.local/lib/python2.7/site-packages/flask/app.py", line 841, in run
+    run_simple(host, port, self, **options)
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 720, in run_simple
+    s.bind((hostname, port))
+  File "/usr/lib/python2.7/socket.py", line 228, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+kara@kara-Capstone:~/Desktop/testproject$ ^C
+kara@kara-Capstone:~/Desktop/testproject$ lsof -i :5000
+COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+python  2159 kara    3u  IPv4 248538      0t0  TCP kara-Capstone:5000 (LISTEN)
+python  2164 kara    3u  IPv4 248538      0t0  TCP kara-Capstone:5000 (LISTEN)
+python  2164 kara    4u  IPv4 248987      0t0  TCP kara-Capstone:5000->localhost:44702 (CLOSE_WAIT)
+python  2164 kara    5u  IPv4 248538      0t0  TCP kara-Capstone:5000 (LISTEN)
+python  2164 kara    6u  IPv4 248987      0t0  TCP kara-Capstone:5000->localhost:44702 (CLOSE_WAIT)
+python  2164 kara    7u  IPv4 248987      0t0  TCP kara-Capstone:5000->localhost:44702 (CLOSE_WAIT)
+kara@kara-Capstone:~/Desktop/testproject$ sudo kill -9 2164
+[sudo] password for kara: 
+kara@kara-Capstone:~/Desktop/testproject$ lsof -i :5000
+COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+python  2159 kara    3u  IPv4 248538      0t0  TCP kara-Capstone:5000 (LISTEN)
+kara@kara-Capstone:~/Desktop/testproject$ sudo kill -9 2159
+[1]+  Killed                  python app.py
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 11:28:45] "GET / HTTP/1.1" 200 -
+56394bdb298f47d3835a8eae4d9f66cc USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 11:28:45] "GET /socket.io/?EIO=3&transport=polling&t=1509128925848-0 HTTP/1.1" 200 -
+kara IS HOST NAME 
+1234 IS PORT NUMBER 
+test IS SUITE NAME 
+PASSPHRASE:  XGZDFTIWhibMwVzr2SuQ
+127.0.0.1 - - [27/Oct/2017 11:28:57] "POST /socket.io/?EIO=3&transport=polling&t=1509128937481-2&sid=56394bdb298f47d3835a8eae4d9f66cc HTTP/1.1" 200 -
+kara IS HOST NAME 
+1234 IS PORT NUMBER 
+test IS SUITE NAME 
+PASSPHRASE:  XGZDFTIWhibMwVzr2SuQ
+127.0.0.1 - - [27/Oct/2017 11:29:00] "POST /socket.io/?EIO=3&transport=polling&t=1509128940481-3&sid=56394bdb298f47d3835a8eae4d9f66cc HTTP/1.1" 200 -
+^CException in thread Thread-4 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 11:29:27] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2017 11:29:27] "GET /static/script.js HTTP/1.1" 200 -
+d9d8b43dc8bb4c298213e271d1c301ae USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 11:29:27] "GET /socket.io/?EIO=3&transport=polling&t=1509128967368-0 HTTP/1.1" 200 -
+kara IS HOST NAME 
+1234 IS PORT NUMBER 
+test IS SUITE NAME 
+message handler error
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/engineio/server.py", line 398, in _trigger_event
+    return self.handlers[event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 513, in _handle_eio_message
+    self._handle_event(sid, pkt.namespace, pkt.id, pkt.data)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 449, in _handle_event
+    self._handle_event_internal(self, sid, data, namespace, id)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 452, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 481, in _trigger_event
+    return self.handlers[namespace][event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 236, in _handler
+    *args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 619, in _handle_event
+    ret = handler(*args)
+  File "app.py", line 38, in message
+    with open(passphraseFile,'r') as f:
+IOError: [Errno 2] No such file or directory: '$HOME/cylc-run/examples/7.5.0/tutorial/oneoff/basic/.service/passphrase'
+127.0.0.1 - - [27/Oct/2017 11:29:29] "POST /socket.io/?EIO=3&transport=polling&t=1509128969929-2&sid=d9d8b43dc8bb4c298213e271d1c301ae HTTP/1.1" 200 -
+^CException in thread Thread-5 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ cd ..
+kara@kara-Capstone:~/Desktop$ python path.py
+/home/kara/Desktop/cylc-run
+kara@kara-Capstone:~/Desktop$ python path.py
+<function abspath at 0x7f99852b29b0>
+kara@kara-Capstone:~/Desktop$ python path.py
+Traceback (most recent call last):
+  File "path.py", line 3, in <module>
+    filePath = os.path.abspath()
+TypeError: abspath() takes exactly 1 argument (0 given)
+kara@kara-Capstone:~/Desktop$ python path.py
+Traceback (most recent call last):
+  File "path.py", line 3, in <module>
+    filePath = os.path.abspath(test)
+NameError: name 'test' is not defined
+kara@kara-Capstone:~/Desktop$ python path.py
+/home/kara/Desktop/test
+kara@kara-Capstone:~/Desktop$ python path.py
+Traceback (most recent call last):
+  File "path.py", line 2, in <module>
+    from pathlib import Path
+ImportError: No module named pathlib
+kara@kara-Capstone:~/Desktop$ pip install pathlib
+Collecting pathlib
+  Downloading pathlib-1.0.1.tar.gz (49kB)
+    100% |████████████████████████████████| 51kB 1.3MB/s 
+Building wheels for collected packages: pathlib
+  Running setup.py bdist_wheel for pathlib ... done
+  Stored in directory: /home/kara/.cache/pip/wheels/2a/23/a5/d8803db5d631e9f391fe6defe982a238bf5483062eeb34e841
+Successfully built pathlib
+Installing collected packages: pathlib
+Successfully installed pathlib-1.0.1
+You are using pip version 8.1.1, however version 9.0.1 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+kara@kara-Capstone:~/Desktop$ python path.py
+/home/kara/Desktop/test
+Traceback (most recent call last):
+  File "path.py", line 7, in <module>
+    p = Path("cylc-run").resolve()
+  File "/home/kara/.local/lib/python2.7/site-packages/pathlib.py", line 1034, in resolve
+    s = self._flavour.resolve(self)
+  File "/home/kara/.local/lib/python2.7/site-packages/pathlib.py", line 320, in resolve
+    return _resolve(base, str(path)) or sep
+  File "/home/kara/.local/lib/python2.7/site-packages/pathlib.py", line 305, in _resolve
+    target = accessor.readlink(newpath)
+  File "/home/kara/.local/lib/python2.7/site-packages/pathlib.py", line 398, in readlink
+    return os.readlink(path)
+OSError: [Errno 2] No such file or directory: '/home/kara/Desktop/cylc-run'
+kara@kara-Capstone:~/Desktop$ python path.py
+Traceback (most recent call last):
+  File "path.py", line 7, in <module>
+    p = Path("python2.7").resolve()
+  File "/home/kara/.local/lib/python2.7/site-packages/pathlib.py", line 1034, in resolve
+    s = self._flavour.resolve(self)
+  File "/home/kara/.local/lib/python2.7/site-packages/pathlib.py", line 320, in resolve
+    return _resolve(base, str(path)) or sep
+  File "/home/kara/.local/lib/python2.7/site-packages/pathlib.py", line 305, in _resolve
+    target = accessor.readlink(newpath)
+  File "/home/kara/.local/lib/python2.7/site-packages/pathlib.py", line 398, in readlink
+    return os.readlink(path)
+OSError: [Errno 2] No such file or directory: '/home/kara/Desktop/python2.7'
+kara@kara-Capstone:~/Desktop$ cd testproject/
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 11:38:10] "GET / HTTP/1.1" 200 -
+8111cb28722348619040fc6b0d644d85 USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 11:38:10] "GET /socket.io/?EIO=3&transport=polling&t=1509129490680-0 HTTP/1.1" 200 -
+a IS HOST NAME 
+c IS PORT NUMBER 
+v IS SUITE NAME 
+message handler error
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/engineio/server.py", line 398, in _trigger_event
+    return self.handlers[event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 513, in _handle_eio_message
+    self._handle_event(sid, pkt.namespace, pkt.id, pkt.data)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 449, in _handle_event
+    self._handle_event_internal(self, sid, data, namespace, id)
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 452, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/usr/local/lib/python2.7/dist-packages/socketio/server.py", line 481, in _trigger_event
+    return self.handlers[namespace][event](*args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 236, in _handler
+    *args)
+  File "/usr/local/lib/python2.7/dist-packages/flask_socketio/__init__.py", line 619, in _handle_event
+    ret = handler(*args)
+  File "app.py", line 38, in message
+    with open(passphraseFile,'r') as f:
+IOError: [Errno 2] No such file or directory: '~/cylc-run/examples/7.5.0/tutorial/oneoff/basic/.service/passphrase'
+127.0.0.1 - - [27/Oct/2017 11:38:18] "POST /socket.io/?EIO=3&transport=polling&t=1509129498937-2&sid=8111cb28722348619040fc6b0d644d85 HTTP/1.1" 200 -
+^CException in thread Thread-4 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ cd ..
+kara@kara-Capstone:~/Desktop$ python app.py
+python: can't open file 'app.py': [Errno 2] No such file or directory
+kara@kara-Capstone:~/Desktop$ python path.py
+/home/kara
+kara@kara-Capstone:~/Desktop$ cd testproject/
+kara@kara-Capstone:~/Desktop/testproject$ python app.py
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Running on http://kara-Capstone:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+WebSocket transport not available. Install eventlet or gevent and gevent-websocket for improved performance.
+ * Debugger is active!
+ * Debugger PIN: 170-293-424
+127.0.0.1 - - [27/Oct/2017 11:42:51] "GET / HTTP/1.1" 200 -
+0c4979a9948f4ee396236773f9c4b80c USER CONNECTED 
+127.0.0.1 - - [27/Oct/2017 11:42:51] "GET /socket.io/?EIO=3&transport=polling&t=1509129771423-0 HTTP/1.1" 200 -
+aa IS HOST NAME 
+ee IS PORT NUMBER 
+rr IS SUITE NAME 
+PASSPHRASE:  XGZDFTIWhibMwVzr2SuQ
+127.0.0.1 - - [27/Oct/2017 11:42:57] "POST /socket.io/?EIO=3&transport=polling&t=1509129777766-2&sid=0c4979a9948f4ee396236773f9c4b80c HTTP/1.1" 200 -
+^CException in thread Thread-4 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+  File "/usr/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+  File "/home/kara/.local/lib/python2.7/site-packages/werkzeug/serving.py", line 548, in handle_error
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'handle_error'
+kara@kara-Capstone:~/Desktop/testproject$ cd
+kara@kara-Capstone:~$ cd /tmp
+kara@kara-Capstone:/tmp$ ls
+config-err-omgGKf      systemd-private-6932559a3b324e77bdbbfa66491b59ec-colord.service-bYlHFc
+cylc-examples          systemd-private-6932559a3b324e77bdbbfa66491b59ec-rtkit-daemon.service-KYzm4O
+firefox_kara           systemd-private-6932559a3b324e77bdbbfa66491b59ec-systemd-timesyncd.service-W3xIVo
+gnome-software-JUD78Y  unity_support_test.1
+kara@kara-Capstone:/tmp$ cd cylc-examples/
+kara@kara-Capstone:/tmp/cylc-examples$ ls
+7.5.0
+kara@kara-Capstone:/tmp/cylc-examples$ cd 7.5.0/
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0$ ls
+AutoRecover   delayed-retry   inherit           parameters  remote       submit-triggers
+clock-expire  family          jinja2            polling     satellite    task-states
+cycling       future-trigger  message-triggers  queues      s-f-trigger  tutorial
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0$ cd tutorial/
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ ls
+cycling  oneoff  README
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ cd oneoff/
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff$ ls
+basic  external  ftrigger1  ftrigger2  goodbye  inherit  jinja2  jobsub  minimal  remote  retry  suicide
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff$ cd basic/
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic$ ls
+cylc-suite.db  log  share  suite.rc  suite.rc.processed  work
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff/basic$ cd ..
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial/oneoff$ cd ..
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ ls
+cycling  oneoff  README
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0/tutorial$ cd ..
+kara@kara-Capstone:/tmp/cylc-examples/7.5.0$ cd 
+kara@kara-Capstone:~$ cd /opt
+kara@kara-Capstone:/opt$ ls
+cylc  cylc-7.5.0  cylc-7.5.0.tar.gz
+kara@kara-Capstone:/opt$ cd cylc-7.5.0/
+kara@kara-Capstone:/opt/cylc-7.5.0$ ls
+admin  CHANGES.md  COPYING  doc       images      lib       Makefile   tests
+bin    conf        dev      examples  INSTALL.md  licences  README.md  VERSION
+kara@kara-Capstone:/opt/cylc-7.5.0$ cd li
+bash: cd: li: No such file or directory
+kara@kara-Capstone:/opt/cylc-7.5.0$ cd lib
+kara@kara-Capstone:/opt/cylc-7.5.0/lib$ ls
+cherrypy  cylc  isodatetime  jinja2  Jinja2Filters  markupsafe  parsec  xdot.py
+kara@kara-Capstone:/opt/cylc-7.5.0/lib$ cd cylc/
+kara@kara-Capstone:/opt/cylc-7.5.0/lib/cylc$ ls
+batch_sys_handlers          exceptions.py      network             scheduler.pyc            task_message.pyc
+batch_sys_manager.py        exceptions.pyc     option_parsers.py   strftime.py              task_outputs.py
+batch_sys_manager.pyc       execute.py         option_parsers.pyc  suite_db_mgr.py          task_outputs.pyc
+broadcast_report.py         flags.py           param_expand.py     suite_db_mgr.pyc         task_pool.py
+broadcast_report.pyc        flags.pyc          param_expand.pyc    suite_events.py          task_pool.pyc
+c3mro.py                    graphing.py        prerequisite.py     suite_events.pyc         task_proxy.py
+c3mro.pyc                   graphnode.py       prerequisite.pyc    suite_host.py            task_proxy.pyc
+cfgspec                     graphnode.pyc      print_tree.py       suite_host.pyc           task_state_prop.py
+command_polling.py          graph_parser.py    print_tree.pyc      suite_logging.py         task_state_prop.pyc
+command_polling.pyc         graph_parser.pyc   profiler.py         suite_logging.pyc        task_state.py
+conditional_simplifier.py   gui                profiler.pyc        suite_srv_files_mgr.py   task_state.pyc
+conditional_simplifier.pyc  host_select.py     profiling           suite_srv_files_mgr.pyc  task_trigger.py
+config.py                   host_select.pyc    prompt.py           tail.py                  task_trigger.pyc
+config.pyc                  __init__.py        prompt.pyc          task_action_timer.py     templatevars.py
+cycling                     __init__.pyc       regprompt.py        task_action_timer.pyc    templatevars.pyc
+cylc_xdot.py                job_file.py        remote.py           taskdef.py               time_parser.py
+daemonize.py                job_file.pyc       remote.pyc          taskdef.pyc              time_parser.pyc
+daemonize.pyc               job.sh             rundb.py            task_events_mgr.py       version.py
+dbstatecheck.py             log_diagnosis.py   rundb.pyc           task_events_mgr.pyc      version.pyc
+dbstatecheck.pyc            log_diagnosis.pyc  run_get_stdout.py   task_id.py               wallclock.py
+dump.py                     mkdir_p.py         run_get_stdout.pyc  task_id.pyc              wallclock.pyc
+dump.pyc                    mkdir_p.pyc        scheduler_cli.py    task_job_mgr.py
+envvar.py                   mp_pool.py         scheduler_cli.pyc   task_job_mgr.pyc
+envvar.pyc                  mp_pool.pyc        scheduler.py        task_message.py
+kara@kara-Capstone:/opt/cylc-7.5.0/lib/cylc$ cd network/
+kara@kara-Capstone:/opt/cylc-7.5.0/lib/cylc/network$ ls
+daemon.py               method.pyc                  suite_command_server.pyc     suite_log_server.pyc
+daemon.pyc              port_scan.py                suite_identifier_client.py   suite_state_client.py
+ext_trigger_client.py   port_scan.pyc               suite_identifier_server.py   suite_state_client.pyc
+ext_trigger_client.pyc  suite_broadcast_client.py   suite_identifier_server.pyc  suite_state_server.py
+ext_trigger_server.py   suite_broadcast_client.pyc  suite_info_client.py         suite_state_server.pyc
+ext_trigger_server.pyc  suite_broadcast_server.py   suite_info_client.pyc        task_msg_client.py
+https                   suite_broadcast_server.pyc  suite_info_server.py         task_msg_client.pyc
+__init__.py             suite_command_client.py     suite_info_server.pyc        task_msg_server.py
+__init__.pyc            suite_command_client.pyc    suite_log_client.py          task_msg_server.pyc
+method.py               suite_command_server.py     suite_log_server.py
+kara@kara-Capstone:/opt/cylc-7.5.0/lib/cylc/network$ grep requests *
+grep: https: Is a directory
+kara@kara-Capstone:/opt/cylc-7.5.0/lib/cylc/network$ grep -r requests *
+https/daemon.py:        # supported by most browsers. requests and urllib2 are OK though.
+https/client_reporter.py:    """For logging cylc client requests with identifying information."""
+https/client_reporter.py:    LOG_IDENTIFY_TMPL = '[client-identify] %d id requests in PT%dS'
+https/client_reporter.py:        self._id_start_time = time.time()  # Start of id requests measurement.
+https/client_reporter.py:        self._num_id_requests = 0  # Number of client id requests.
+https/client_reporter.py:        """Log client requests with identifying information.
+https/client_reporter.py:        In debug mode log all requests including task messages. Otherwise log
+https/client_reporter.py:            self._num_id_requests += 1
+https/client_reporter.py:            self.report_id_requests()
+https/client_reporter.py:    def report_id_requests(self):
+https/client_reporter.py:        """Report the frequency of identification (scan) requests."""
+https/client_reporter.py:            rate = float(self._num_id_requests) / interval
+https/client_reporter.py:                        self._num_id_requests, interval)
+https/client_reporter.py:                        self._num_id_requests, interval)
+https/client_reporter.py:            self._num_id_requests = 0
+Binary file https/client_reporter.pyc matches
+https/base_client.py:        # returns a list of http returns from the requests
+https/base_client.py:        requests_ok = True
+https/base_client.py:            import requests
+https/base_client.py:            requests_ok = False
+https/base_client.py:            version = [int(_) for _ in requests.__version__.split(".")]
+https/base_client.py:                requests_ok = False
+https/base_client.py:        if requests_ok:
+https/base_client.py:            return self._get_data_from_url_with_requests(http_request_items)
+https/base_client.py:    def _get_data_from_url_with_requests(self, http_request_items):
+https/base_client.py:        import requests
+https/base_client.py:        from requests.packages.urllib3.exceptions import InsecureRequestWarning
+https/base_client.py:        auth = requests.auth.HTTPDigestAuth(username, password)
+https/base_client.py:            self.session = requests.Session()
+https/base_client.py:            except requests.exceptions.SSLError as exc:
+https/base_client.py:            except requests.exceptions.Timeout as exc:
+https/base_client.py:            except requests.exceptions.RequestException as exc:
+https/base_client.py:            except requests.exceptions.HTTPError as exc:
+https/base_client.py:            handle multiple requests in call to the method."""
+Binary file https/base_client.pyc matches
+kara@kara-Capstone:/opt/cylc-7.5.0/lib/cylc/network$ cd https/
+kara@kara-Capstone:/opt/cylc-7.5.0/lib/cylc/network/https$ ls
+base_client.py          __init__.py                 suite_identifier_client.py   suite_state_client.pyc
+base_client.pyc         __init__.pyc                suite_identifier_client.pyc  suite_state_server.py
+base_server.py          port_scan.py                suite_identifier_server.py   suite_state_server.pyc
+base_server.pyc         port_scan.pyc               suite_identifier_server.pyc  task_msg_client.py
+client_reporter.py      suite_broadcast_client.py   suite_info_client.py         task_msg_client.pyc
+client_reporter.pyc     suite_broadcast_client.pyc  suite_info_client.pyc        task_msg_server.py
+daemon.py               suite_broadcast_server.py   suite_info_server.py         task_msg_server.pyc
+daemon.pyc              suite_broadcast_server.pyc  suite_info_server.pyc        util.py
+ext_trigger_client.py   suite_command_client.py     suite_log_client.py          util.pyc
+ext_trigger_client.pyc  suite_command_client.pyc    suite_log_server.py
+ext_trigger_server.py   suite_command_server.py     suite_log_server.pyc
+ext_trigger_server.pyc  suite_command_server.pyc    suite_state_client.py
+kara@kara-Capstone:/opt/cylc-7.5.0/lib/cylc/network/https$ vim base_client.py
+The program 'vim' can be found in the following packages:
+ * vim
+ * vim-gnome
+ * vim-tiny
+ * vim-athena
+ * vim-athena-py2
+ * vim-gnome-py2
+ * vim-gtk
+ * vim-gtk-py2
+ * vim-gtk3
+ * vim-gtk3-py2
+ * vim-nox
+ * vim-nox-py2
+Try: sudo apt install <selected package>
+kara@kara-Capstone:/opt/cylc-7.5.0/lib/cylc/network/https$ vi base_client.py
+kara@kara-Capstone:/opt/cylc-7.5.0/lib/cylc/network/https$ cd ..
+kara@kara-Capstone:/opt/cylc-7.5.0/lib/cylc/network$ cd ..
+kara@kara-Capstone:/opt/cylc-7.5.0/lib/cylc$ cd ..
+kara@kara-Capstone:/opt/cylc-7.5.0/lib$ cd ..
+kara@kara-Capstone:/opt/cylc-7.5.0$ ls
+admin  CHANGES.md  COPYING  doc       images      lib       Makefile   tests
+bin    conf        dev      examples  INSTALL.md  licences  README.md  VERSION
+kara@kara-Capstone:/opt/cylc-7.5.0$ cd bin
+kara@kara-Capstone:/opt/cylc-7.5.0/bin$ vim cylc
+kara@kara-Capstone:/opt/cylc-7.5.0/bin$ cd
+kara@kara-Capstone:~$ cd Desktop/
+kara@kara-Capstone:~/Desktop$ script out.txt
+Script started, file is out.txt
+kara@kara-Capstone:~/Desktop$ ls
+au.py  out.txt  path.py  testproject  use_cylc_libs.sh
+kara@kara-Capstone:~/Desktop$ cd 
+kara@kara-Capstone:~$ ^C
+kara@kara-Capstone:~$ 
+

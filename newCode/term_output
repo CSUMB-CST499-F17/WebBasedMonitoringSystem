@@ -1,0 +1,95 @@
+examples/7.5.0/tutorial/cycling/one - 4 tasks          cylc-monitor d58fb29d-c86f-4ae6-8ba7-42bd1926a72c
+runaheadwaitingheldqueuedreadyexpiredsubmittedsubmit-failedsubmit-retryingrunningsucceededfailedretrying
+updated: 2017-10-27T13:33:05-07
+state summary: 1  1  2 
+___________________________________________________________________________________________r_u_n_n_i_n_g
+20130830T1200Z bar
+20130831T0000Z foo
+20130831T1200Z foo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+examples/7.5.0/tutorial/cycling/one - 3 tasks          cylc-monitor d58fb29d-c86f-4ae6-8ba7-42bd1926a72c
+runaheadwaitingheldqueuedreadyexpiredsubmittedsubmit-failedsubmit-retryingrunningsucceededfailedretrying
+updated: 2017-10-27T13:33:06-07
+state summary: 1  1  1 
+___________________________________________________________________________________________r_u_n_n_i_n_g
+20130831T0000Z bar
+20130831T1200Z foo
+^Ckara@kara-Capstone:~$ cylc scan
+examples/7.5.0/tutorial/cycling/one kara@localhost:4005
+kara@kara-Capstone:~$ cd Desktop/
+kara@kara-Capstone:~/Desktop$ python au.py
+401
+Traceback (most recent call last):
+  File "au.py", line 34, in <module>
+    print ret.json()
+  File "/home/kara/.local/lib/python2.7/site-packages/requests/models.py", line 892, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/usr/lib/python2.7/json/__init__.py", line 339, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 364, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+kara@kara-Capstone:~/Desktop$ python au.py
+200
+[{u'states': [u'ready', u'runahead', u'succeeded'], u'last_updated': 1509136527.682633, u'newest runahead cycle point string': u'20130928T0000Z', u'status_string': u'running', u'newest cycle point string': u'20130927T1200Z', u'reloading': False, u'daemon time zone info': {u'hours': 0, u'minutes': 0, u'string_extended': u'Z', u'string_basic': u'Z'}, u'state totals': {u'ready': 1, u'runahead': 1, u'succeeded': 1}, u'namespace definition order': [u'root', u'foo', u'bar'], u'oldest cycle point string': u'20130927T0000Z', u'run_mode': u'live'}, {u'bar.20130927T0000Z': {u'started_time_string': None, u'execution_time_limit': None, u'mean_elapsed_time': 0.5, u'description': u'', u'title': u'', u'started_time': None, u'submit_num': 1, u'state': u'ready', u'batch_sys_name': u'background', u'logfiles': [], u'host': u'localhost', u'finished_time': None, u'submitted_time': 1509136527.0, u'submit_method_id': u'15791', u'latest_message': u'submitted', u'finished_time_string': None, u'label': u'20130927T0000Z', u'job_hosts': {u'1': u'localhost'}, u'spawned': u'False', u'submitted_time_string': u'2017-10-27T13:35:27-07', u'name': u'bar'}, u'foo.20130927T1200Z': {u'started_time_string': u'2017-10-27T20:35:26Z', u'execution_time_limit': None, u'mean_elapsed_time': 0.0, u'description': u'', u'title': u'', u'started_time': 1509136526.0, u'submit_num': 1, u'state': u'succeeded', u'batch_sys_name': u'background', u'logfiles': [], u'host': u'localhost', u'finished_time': 1509136526.0, u'submitted_time': None, u'submit_method_id': u'15732', u'latest_message': u'succeeded', u'finished_time_string': u'2017-10-27T20:35:26Z', u'label': u'20130927T1200Z', u'job_hosts': {u'1': u'localhost'}, u'spawned': u'True', u'submitted_time_string': None, u'name': u'foo'}, u'foo.20130928T0000Z': {u'started_time_string': None, u'execution_time_limit': None, u'mean_elapsed_time': 0.0, u'description': u'', u'title': u'', u'started_time': None, u'submit_num': 1, u'state': u'runahead', u'batch_sys_name': u'background', u'logfiles': [], u'host': u'localhost', u'finished_time': None, u'submitted_time': None, u'latest_message': u'', u'finished_time_string': None, u'label': u'20130928T0000Z', u'job_hosts': {u'1': u'localhost'}, u'spawned': u'False', u'submitted_time_string': None, u'name': u'foo'}}, {u'root.20130927T0000Z': {u'description': None, u'state': u'ready', u'title': None, u'name': u'root', u'label': u'20130927T0000Z'}, u'root.20130927T1200Z': {u'description': None, u'state': u'succeeded', u'title': None, u'name': u'root', u'label': u'20130927T1200Z'}, u'root.20130928T0000Z': {u'description': None, u'state': u'runahead', u'title': None, u'name': u'root', u'label': u'20130928T0000Z'}}]
+[{"reloading": false, "last_updated": 1509136527.682633, "newest runahead cycle point string": "20130928T0000Z", "status_string": "running", "newest cycle point string": "20130927T1200Z", "states": ["ready", "runahead", "succeeded"], "daemon time zone info": {"hours": 0, "string_basic": "Z", "string_extended": "Z", "minutes": 0}, "state totals": {"ready": 1, "runahead": 1, "succeeded": 1}, "namespace definition order": ["root", "foo", "bar"], "oldest cycle point string": "20130927T0000Z", "run_mode": "live"}, {"bar.20130927T0000Z": {"started_time_string": null, "execution_time_limit": null, "mean_elapsed_time": 0.5, "description": "", "submit_num": 1, "host": "localhost", "submit_method_id": "15791", "finished_time_string": null, "logfiles": [], "job_hosts": {"1": "localhost"}, "spawned": "False", "finished_time": null, "name": "bar", "title": "", "started_time": null, "latest_message": "submitted", "batch_sys_name": "background", "label": "20130927T0000Z", "state": "ready", "submitted_time": 1509136527.0, "submitted_time_string": "2017-10-27T13:35:27-07"}, "foo.20130927T1200Z": {"started_time_string": "2017-10-27T20:35:26Z", "execution_time_limit": null, "mean_elapsed_time": 0.0, "description": "", "submit_num": 1, "host": "localhost", "submit_method_id": "15732", "finished_time_string": "2017-10-27T20:35:26Z", "logfiles": [], "job_hosts": {"1": "localhost"}, "spawned": "True", "finished_time": 1509136526.0, "name": "foo", "title": "", "started_time": 1509136526.0, "latest_message": "succeeded", "batch_sys_name": "background", "label": "20130927T1200Z", "state": "succeeded", "submitted_time": null, "submitted_time_string": null}, "foo.20130928T0000Z": {"started_time_string": null, "execution_time_limit": null, "mean_elapsed_time": 0.0, "description": "", "submit_num": 1, "host": "localhost", "finished_time_string": null, "logfiles": [], "job_hosts": {"1": "localhost"}, "spawned": "False", "finished_time": null, "name": "foo", "title": "", "started_time": null, "latest_message": "", "batch_sys_name": "background", "label": "20130928T0000Z", "state": "runahead", "submitted_time": null, "submitted_time_string": null}}, {"root.20130927T0000Z": {"state": "ready", "label": "20130927T0000Z", "title": null, "name": "root", "description": null}, "root.20130927T1200Z": {"state": "succeeded", "label": "20130927T1200Z", "title": null, "name": "root", "description": null}, "root.20130928T0000Z": {"state": "runahead", "label": "20130928T0000Z", "title": null, "name": "root", "description": null}}]
+kara@kara-Capstone:~/Desktop$ vim use_cylc_libs.sh
+kara@kara-Capstone:~/Desktop$ which cylc
+/usr/local/bin/cylc
+kara@kara-Capstone:~/Desktop$ export PYTHONPATH="/opt/cylc-7.5.0/lib:$PYTHONPATH"
+kara@kara-Capstone:~/Desktop$ python
+Python 2.7.12 (default, Nov 19 2016, 06:48:10) 
+[GCC 5.4.0 20160609] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import cylc
+>>> import cylc.network as network
+>>> network.__file__
+'/opt/cylc-7.5.0/lib/cylc/network/__init__.pyc'
+>>> 
+[1]+  Stopped                 python
+kara@kara-Capstone:~/Desktop$ 
+

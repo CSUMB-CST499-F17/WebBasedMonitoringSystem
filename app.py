@@ -15,7 +15,6 @@ app = flask.Flask(__name__)
 socketio = flask_socketio.SocketIO(app)
 
 
-
 @app.route('/')
 def hello():
  return flask.render_template('index.html')
@@ -34,6 +33,16 @@ def message(message):
 # print message["hostName"]
  link = "http://"+ str( message["hostName"]) + ":" + str(message["portNumber"]) + '/state/get_state_summary'
  #Verify not necessary: TODO: Verify = FALSE should not skip authentication.
+ #10/24 open passphrase file
+ #suiteName = str(message["suiteName"])
+ #passphraseDirectory = "$HOME/cylc-run/"+suiteName+"/.service"
+ #passpFile = "passphraseDirectory/passphrase"
+ #get passphrase from file as a string pass as second argument to HTTPDigestAuth
+ #with open(passpFile,'r') as f:
+   #passphrase = f.readline()
+ #print("PASSPHRASE: ", passphrase)
+ 
+
  r=requests.get(link,auth=HTTPDigestAuth('anon','the quick brown fox'))
  data = r.json()
  try:
