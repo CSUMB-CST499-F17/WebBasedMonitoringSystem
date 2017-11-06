@@ -1,4 +1,5 @@
 # app.py
+import requests
 import os, flask, flask_socketio,requests
 from flask_socketio import emit,send
 import json
@@ -6,7 +7,7 @@ from flask import jsonify
 from requests.auth import HTTPDigestAuth
 import socket
 from os.path import expanduser
-
+from au import authorize
 
 app = flask.Flask(__name__)
 
@@ -37,15 +38,19 @@ def message(message):
 	home = expanduser("~")
 #typical non-example suite path
 	#passphraseFile = home+"/cylc-run/"+suiteName+"/.service/passphrase
- 	passphraseFile = home+"/cylc-run/examples/7.5.0/tutorial/oneoff/basic/.service/passphrase"
+	
+ 	passphraseFile = home+"/cylc-run/examples/7.5.0/tutorial/cycling/one/.service/passphrase"
 #get passphrase from file as a string pass as second argument to HTTPDigestAuth
 	with open(passphraseFile,'r') as f:
    		passphrase = f.readline()
  	print "PASSPHRASE: ", passphrase
- 
-	#r = requests.get(link,auth=HTTPDigestAuth('anon',passphrase))
- 	#data = r.json()
-	#print data
+	
+	 
+
+	suiteInformation = authorize(str(message['portNumber']),passphrase,str(message['hostName']))
+	#print "SUITE STATUS:", suiteInformation.status_code
+	#print suiteInformation.json()
+	#print suiteInformation.text
 	
 
 
