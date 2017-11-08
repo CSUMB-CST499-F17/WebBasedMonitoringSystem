@@ -1,0 +1,82 @@
+#wrapper{
+    width: 815px;
+    margin: 0 auto;
+    }
+#runahead{
+    font-weight: bold;
+    color:white;
+    background:#21417c;
+}
+#waiting{
+    font-weight: bold;
+    color:#06e0d9;
+    background:white;
+}
+#held{
+    font-weight: bold;
+    color:white;
+    background:#ba8446;
+}
+#queued{
+    font-weight: bold;
+    color:black;
+    background:white;
+}
+#ready{
+    font-weight: bold;
+    color:#88ce46;
+    background:white;
+}
+#expired{
+    font-weight: bold;
+    color:white;
+    background:black;
+}
+#submitted{
+    font-weight: bold;
+    color:yellow;
+    background:white;
+}
+#submitted-failed{
+    font-weight: bold;
+    color:#4d89a5;
+    background:white;
+}
+#submitted-retrying{
+    font-weight: bold;
+    color:red;
+    background:white;
+}
+#running{
+    font-weight: bold;
+    color:white;
+    background:#3c8439;
+}
+#succeeded{
+    color:black; /*thinner font*/
+    background:white;
+}
+#failed{
+    font-weight: bold;
+    color:white;
+    background:red;
+}
+#retrying{
+    font-weight: bold;
+    color:#b689ba;
+    background:white;
+}
+.padding{
+    margin:0;
+    padding:0;
+}
+#divider{
+    color:red;
+    font-weight: bold;
+}
+.stop_time{
+    color:red;
+}
+#suite_name{
+    color:red;
+}

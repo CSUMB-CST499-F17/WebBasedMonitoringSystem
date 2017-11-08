@@ -3,7 +3,7 @@
 import requests
 
 def authorize(portNumber,passphrase,hostName):
-	#hostName = 'localhost'
+	# hostName = 'localhost'
 	url = "http://%s:%s/state/get_state_summary" % (hostName,portNumber)
 	auth = requests.auth.HTTPDigestAuth('cylc', passphrase)
 	session = requests.Session()
