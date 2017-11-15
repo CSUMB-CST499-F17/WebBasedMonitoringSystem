@@ -31,3 +31,5 @@ function getData(){
 
     socket.emit('data', suite_information); 
 }
+
+
