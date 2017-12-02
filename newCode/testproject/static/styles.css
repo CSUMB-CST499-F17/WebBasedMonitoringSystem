@@ -1,70 +1,99 @@
+.span{
+
+    font-size: 150px;
+
+
+}
+span{
+    font-family: "Courier New";
+}
 #wrapper{
     width: 815px;
     margin: 0 auto;
     }
+#stamp{
+    font-weight: bold;
+    color:#9B59B6;
+    background:white;
+}
 #runahead{
     font-weight: bold;
     color:white;
     background:#21417c;
+    display:inline-block;
 }
 #waiting{
     font-weight: bold;
     color:#06e0d9;
     background:white;
+    display:inline-block;
 }
 #held{
     font-weight: bold;
     color:white;
     background:#ba8446;
+    display:inline-block;
 }
 #queued{
     font-weight: bold;
     color:black;
     background:white;
+    display:inline-block;
 }
 #ready{
     font-weight: bold;
     color:#88ce46;
     background:white;
+    display:inline-block;
 }
 #expired{
     font-weight: bold;
     color:white;
     background:black;
+    display:inline-block;
 }
 #submitted{
     font-weight: bold;
-    color:yellow;
+    color:#F4D03F;
     background:white;
+    display:inline-block;
 }
 #submitted-failed{
     font-weight: bold;
     color:#4d89a5;
     background:white;
+    display:inline-block;
 }
 #submitted-retrying{
     font-weight: bold;
     color:red;
     background:white;
+    display:inline-block;
 }
 #running{
     font-weight: bold;
     color:white;
     background:#3c8439;
+    display:inline-block;
 }
 #succeeded{
+    
     color:black; /*thinner font*/
     background:white;
+    display:inline-block;
+    font-family: monospace;
 }
 #failed{
     font-weight: bold;
     color:white;
     background:red;
+    display:inline-block;
 }
 #retrying{
     font-weight: bold;
     color:#b689ba;
     background:white;
+    display:inline-block;
 }
 .padding{
     margin:0;
@@ -78,5 +107,10 @@
     color:red;
 }
 #suite_name{
-    color:red;
+    color:white;
+}
+#time{
+    font-weight: bold;
+    color:orange;
+    background:white;
 }
