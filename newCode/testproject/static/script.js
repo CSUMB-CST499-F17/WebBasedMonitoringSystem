@@ -5,7 +5,7 @@ window.onload = function(){
 var socket = io(window.location.hostname+':5000');
 var portNumber=""
 var suiteName="";
-var hostName="";
+var hostName=""
 var suite_information;
 
 socket.on('connect', function(){
@@ -23,7 +23,7 @@ function getData(){
     document.getElementById("test").innerHTML = "DATA SENT";
 
     suite_information = {
-	'hostName':hostName,
+	'hostName': hostName,
         'portNumber':portNumber,
 	'suiteName':suiteName
 

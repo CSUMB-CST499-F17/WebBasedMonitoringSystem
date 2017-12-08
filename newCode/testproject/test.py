@@ -1,11 +1,8 @@
-# app.py
+# test.py
 import requests
 import collections
 import datetime
 from time import sleep, time
-from status import (
-	TASK_STATUS_RUNAHEAD, TASK_STATUSES_ORDERED,
-	TASK_STATUSES_RESTRICTED)
 import os, flask, flask_socketio,requests
 from flask_socketio import emit,send
 import json
@@ -36,135 +33,54 @@ def hello():
 def on_connect():
 	print "%s USER CONNECTED " %  flask.request.sid
 
-#Opens the cylc monitor webpage
-# @app.route('/monitor', methods = {'GET', 'POST'})
-# #@app.route('/monitor', )
-# def monitor():
-#     return flask.render_template('monitor.html', test = test, dat = dat, moredat = moredat)
-
-
-# @socketio.on('data')
-# def message(message):
-
-# 	print "%s IS HOST NAME " % message['hostName']
-# 	print "%s IS PORT NUMBER " % message['portNumber']
-# 	print "%s IS SUITE NAME " % message['suiteName']
-# 	link = "http://"+ str( message["hostName"]) + ":" + str(message["portNumber"]) + '/state/get_state_summary'
-#  #Verify not necessary: TODO: Verify = FALSE should not skip authentication.
-#  #10/24 open passphrase file
-#  #example suites are a different path because it creates example folder for all
-#  	#suiteName = str(message["suiteName"])
-# 	home = expanduser("~")
-# #typical non-example suite path
-# 	#passphraseFile = home+"/cylc-run/"+suiteName+"/.service/passphrase
-	
-#  	# passphraseFile = home+"/cylc-run/examples/7.5.0/tutorial/cycling/one/.service/passphrase"
-#  	passphraseFile = home+"/cylc-run/tmp/cylc-examples/7.5.0/tutorial/cycling/one/.service/passphrase"
-# #get passphrase from file as a string pass as second argument to HTTPDigestAuth
-# 	with open(passphraseFile,'r') as f:
-#    		passphrase = f.readline()
-#  	print "PASSPHRASE: ", passphrase
-	
-# 	suiteInformation = authorize(str(message['portNumber']),passphrase,str(message['hostName']))
-# 	host = socket.gethostname()
-# 	# print "SUITE STATUS:", suiteInformation.status_code
-# 	print suiteInformation.json()
-# 	print suiteInformation.text
-	
-# 	#test variable holds json data
-# 	global test
-# 	test = suiteInformation.json()
-
-# 	global dat
-# 	global summary
-# 	global updated
-# 	global task_summaries
-# 	blit = []
-	
-# 	# dat = test[0]['state totals']['ready']
-# 	dat = test[0]
-# 	time = test[0]
-# 	task_summaries = test[0]
-
-
-
-# 	summary = ''
-# 	update_totals = dat['last_updated']
-#    	state_totals = dat['state totals']
-#    	value = datetime.datetime.fromtimestamp(update_totals)
-# 	updated = value.strftime('%Y-%m-%dT%H:%M:%S.%f')
-#    	print updated
-
-#    	# update_totals = dat['last_updated']
-# 	# updated= "updated: \033[1;38m%s\033[0m" % update_totals
-	
-#    	for state, tot in state_totals.items():
-#    		#print tot
-#    		# print state
-# 		subst = " %d-%s " % (tot,state)
-# 		print subst
-# 	    # summary += get_status_prop(state, 'ascii_ctrl', subst)
-# 	   	summary += subst
-# 	   	# summary += tot
-
-#    	blit.append(summary)
-
-#    	  	# task_summaries = dict(
-#     # 	(i, j) for i, j in task_summaries.items() 
-#     # 		if (j['state'] != TASK_STATUS_RUNAHEAD))
-
-
-#    	print '\n'.join(blit)
-
-
-# 	# global test
-# 	# test = suiteInformation.json()
-# 	# print test
-# 	# print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-# 	# global dat
-# 	# dat = test[0]['state totals']['ready']
-# 	#dat = test[2]
-# 	print dat
-# 	# print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-# 	global moredat
-# 	moredat = test[2]
-# 	# print moredat
-# 	# print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-# 	# print dat
-
-
+def getData(port,passphrase,hName):
+	suiteInformation = authorize(port,passphrase,hName)
+	#test variable holds json data
+	global json
+	global son
+	json = suiteInformation.json()
+	#print json
+	son = suiteInformation.text
+	return suiteInformation
 
 
 
 @socketio.on('data')
 def authenticate(message):
-	link = "http://"+ str( message["hostName"]) + ":" + str(message["portNumber"]) + '/state/get_state_summary'
+	link = "http://"+ str(message["hostName"]) + ":" + str(message["portNumber"]) + '/state/get_state_summary'
 	home = expanduser("~")
 	
-	# passphraseFile = home+"/cylc-run/examples/7.5.0/tutorial/cycling/one/.service/passphrase"
-	passphraseFile = home+"/cylc-run/tmp/cylc-examples/7.5.0/tutorial/cycling/two/.service/passphrase"
-	#get passphrase from file as a string pass as second argument to HTTPDigestAuth
+	passphraseFile = home+"/cylc-run/examples/7.5.0/tutorial/cycling/one/.service/passphrase"
+	#passphraseFile = home+"/cylc-run/tmp/cylc-examples/7.5.0/tutorial/cycling/two/.service/passphrase"
+	global passphrase
 	with open(passphraseFile,'r') as f:
 		passphrase = f.readline()
 	print "PASSPHRASE: ", passphrase
 	
-	suiteInformation = authorize(str(message['portNumber']),passphrase,str(message['hostName']))
+	global port
+	global hostname
+
+	port = str(message['portNumber'])
+	hostname = str(message['hostName'])
+	data = getData(port,passphrase,hostname)
+	
 	host = socket.gethostname()
 	# print "SUITE STATUS:", suiteInformation.status_code
-	# print suiteInformation.json()
-	# print suiteInformation.text
 	
 	#test variable holds json data
 	global json
-	# global son
-	json = suiteInformation.json()
-	print json
-	# son = suiteInformation.text
+	global son
+	json = data.json()
+	son = data.text
 
 
 
 @app.route('/monitor', methods = ['GET'])
 def monitor():
+
+	global port
+	global hostname
+	global passphrase
 	# print json
 	state_list = json[0]['state totals']
 	other_list = json[1]
@@ -172,7 +88,7 @@ def monitor():
 	#Variables for state summary and update time
 	summary = " "
 	update = " "
-	# summer = ""
+	summer = ""
 
 	#Update variable holds last_updated time from json data
 	update_totals = json[0]['last_updated']
@@ -194,14 +110,12 @@ def monitor():
 		# print subst
 		# summary += get_status_prop(state, 'ascii_ctrl', subst)
 		summary += subst
-		# summer += state
+		summer += state
 		stateColor.append(state)
 		stateValue.append(tot)
 	# blit.append(summer)
 	print "*******6===================6******************"
 	# print blit
-	total_tasks = sum(stateValue)
-
 
 
 
@@ -245,9 +159,6 @@ def monitor():
 
 
 	sorted_name_list = sorted(name_list)
-	# print ("NAME LIST" , name_list)
-	# print ("SORTED NAME LIST" , sorted_name_list)
-	# print point_string
 	sorted_task_info = {}
 	for point_str, info in task_info.items():
 		sorted_task_info[point_str] = collections.OrderedDict()
@@ -264,36 +175,6 @@ def monitor():
 	sorted_task_info_2 = sorted(sorted_task_info.items())			
 
 	print "---------------------------------------------------------"
-	# print  sorted_task_info_2
-	# sorted_task_info_2 = {}
-	# for key, value in sorted(sorted_task_info.items()):
-	# 	# print ("Sorted SHIT: " , (key, sorted_task_info[key]))
-	# 	print "KEY: "
-	# 	print key
-	# 	# sorted_task_info_2[key] = {}
-	# 	if key not in sorted_task_info_2:
-	# 		sorted_task_info_2[key] = {}
-	# 		print "Just HOllaaaaa!"
-	# 		print sorted_task_info_2[key]
-	# 	sorted_task_info_2[key] = value
-	# 	print "VALUE: "
-	# 	print value
-	# 	print "DICT: "
-	# 	print sorted_task_info_2[key]
-	# # 	# sorted_task_info_2[key] = sorted_task_info[key]
-	# # 	# temp = sorted_task_info[key]
-	# # 	# sorted_task_info_2.update(temp) 
-	# # 	temp = {}
-	# # 	# temp[key] = value
-	# # 	# sorted_task_info_2.update(temp)
-	# # 	if value is not None:
-	# # 		temp[key] = value
-	# # 	sorted_task_info_2.update(temp)
-	# # 	# for name, info in value.items():
-	# # 		# sorted_task_info_2[key] = info
-	# # # print temp
-	# # print sorted_task_info_2	
-
 
 	print update
 	print summary
@@ -335,17 +216,9 @@ def monitor():
 	print ""
 	# print labelnames
 	# print labels
-	return flask.render_template('monitor.html', total_tasks = total_tasks, summary = summary, update = update, lineout = lineout, label =zip(labels, labelnames), divider = divider_str, sorted_task_info_2 = sorted_task_info_2, states =zip(stateColor, stateValue) )
+	#return flask.render_template('monitor.html', son = son, summary = summary, update = update, lineout = lineout, label =zip(labels, labelnames), divider = divider_str, sorted_task_info_2 = sorted_task_info_2, states =zip(stateColor, stateValue) )
+	return flask.render_template('monitor.html', response = getData(port,passphrase,hostname), json = json, son = son, summary = summary, update = update, lineout = lineout)
 
-
-
-
-
-
-#@app.route('/monitor', methods = {'GET', 'POST'})
-# @app.route('/monitor')
-# def monitor():
-#     return flask.render_template('monitor.html', summary = summary, updated = updated)
 
 
 
