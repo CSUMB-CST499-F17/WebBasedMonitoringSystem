@@ -41,7 +41,7 @@ def getData(port,passphrase,hName):
 	json = suiteInformation.json()
 	#print json
 	son = suiteInformation.text
-	return suiteInformation
+	return json
 
 
 
@@ -217,7 +217,7 @@ def monitor():
 	# print labelnames
 	# print labels
 	#return flask.render_template('monitor.html', son = son, summary = summary, update = update, lineout = lineout, label =zip(labels, labelnames), divider = divider_str, sorted_task_info_2 = sorted_task_info_2, states =zip(stateColor, stateValue) )
-	return flask.render_template('monitor.html', response = getData(port,passphrase,hostname), json = json, son = son, summary = summary, update = update, lineout = lineout)
+	return flask.render_template('monitor.html', response = getData(port,passphrase,hostname), son = son, summary = summary, update = update, lineout = lineout, divider = divider_str, sorted_task_info_2 = sorted_task_info_2, label =zip(labels, labelnames), states =zip(stateColor, stateValue))
 
 
 
