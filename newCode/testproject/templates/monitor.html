@@ -13,6 +13,9 @@
 
             <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
             <script src="../static/script.js"></script> 
+	<script type="text/javascript">
+		setInterval('window.location.reload()', 6000);
+	</script>
         
     </head>
     <body>
@@ -20,7 +23,7 @@
         <div id="wrapper">
 <!--             <input id = "runahead" type="text" name="suite name" size="50" placeholder="csumb.demo (dummy) - {{total_tasks}} tasks" value="" id="suite_name">
             <input id = "runahead" type="text" name="suite id" size="72" placeholder="cylc-monitor a3ebb403-6695-41cc-99e1-6aa4d3dbeeae" value=""> -->
-            <p id = "runahead">csumb.demo (dummy) - {{total_tasks}} tasks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cylc-monitor a3ebb403-6695-41cc-99e1-6aa4d3dbeeae </p>
+            <p id = "runahead">{{suiteName}} - {{total_tasks}} tasks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cylc-monitor a3ebb403-6695-41cc-99e1-6aa4d3dbeeae </p>
             <div>
                 <p class="padding"><span id="runahead">runahead</span><span id="waiting">waiting</span><span id="held">held</span><span id="queued">queued</span><span id="ready">ready</span><span id="expired">expired</span><span id="submitted">submitted</span><span id="submitted-failed">submitted-failed</span><span id="submitted-retrying">submitted-retrying</span><span id="running">running</span><span id="succeeded">succeeded</span><span id="failed">failed</span><span id="retrying">retrying</span></p>
             </div>

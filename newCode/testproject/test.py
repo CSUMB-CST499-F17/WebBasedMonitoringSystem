@@ -59,9 +59,11 @@ def authenticate(message):
 	
 	global port
 	global hostname
+	global suiteName
 
 	port = str(message['portNumber'])
 	hostname = str(message['hostName'])
+	suiteName = str(message['suiteName'])
 	data = getData(port,passphrase,hostname)
 	
 	host = socket.gethostname()
@@ -116,7 +118,7 @@ def monitor():
 	# blit.append(summer)
 	print "*******6===================6******************"
 	# print blit
-
+	total_tasks = sum(stateValue)
 
 
 	status1 = json[0]['status_string']
@@ -217,7 +219,7 @@ def monitor():
 	# print labelnames
 	# print labels
 	#return flask.render_template('monitor.html', son = son, summary = summary, update = update, lineout = lineout, label =zip(labels, labelnames), divider = divider_str, sorted_task_info_2 = sorted_task_info_2, states =zip(stateColor, stateValue) )
-	return flask.render_template('monitor.html', response = getData(port,passphrase,hostname), son = son, summary = summary, update = update, lineout = lineout, divider = divider_str, sorted_task_info_2 = sorted_task_info_2, label =zip(labels, labelnames), states =zip(stateColor, stateValue))
+	return flask.render_template('monitor.html', response = getData(port,passphrase,hostname), summary = summary, update = update, lineout = lineout, divider = divider_str, sorted_task_info_2 = sorted_task_info_2, label =zip(labels, labelnames), states =zip(stateColor, stateValue), total_tasks = total_tasks, suiteName = suiteName)
 
 
 
